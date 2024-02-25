@@ -16,13 +16,17 @@ const TestPage = () => {
       setError("Error fetching data. Please try again.");
     }
   };
-  
 
   return (
     <div>
-      <button onClick={fetchData}>Fetch Data</button>
+      <button
+        onClick={fetchData}
+        className="bg-blue-500 text-white px-4 py-2 rounded"
+      >
+        Fetch Data
+      </button>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      {data && <p>{data}</p>}
+      {data && <p className="text-3xl text-blue-300">{data}</p>}
     </div>
   );
 };
