@@ -1,4 +1,4 @@
-import TestPage from "./pages/TestPage";
+import TestPage from "./components/TestPage";
 import Layout from "./components/Layout";
 
 const App = () => {

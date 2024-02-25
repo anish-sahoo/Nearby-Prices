@@ -1,0 +1,10 @@
+insert into Users (user_id, user_name, full_name, password) values (1, 'lquiddington0', 'Lonny Quiddington', '$2a$04$.CaLLUuWCDBbPWMQjpO4tuERGdUGoRT4WeyIOF9GSX7lr3KCHJVs.');
+insert into Users (user_id, user_name, full_name, password) values (2, 'ggoldsbury1', 'Gertrud Goldsbury', '$2a$04$aScfu2Ci/GHztYyqlHiUqezM39oq/7yPT9/YhVGy1XT2KCx5Pi3US');
+insert into Users (user_id, user_name, full_name, password) values (3, 'adovey2', 'Allin Dovey', '$2a$04$Hqj4ZRcZ.k7zul9f5VD9i.SEs/sTUFmgtv2Y/6vhwKXSZ5rmIeNvC');
+insert into Users (user_id, user_name, full_name, password) values (4, 'nreston3', 'Noak Reston', '$2a$04$Q6qETBBsPASEO5qeQdsIuuv1cWmVtxYXM.mIp1edsMGh6Z40vRwGG');
+insert into Users (user_id, user_name, full_name, password) values (5, 'jweinberg4', 'Jewelle Weinberg', '$2a$04$dPlsVnrQXsrNE0DlyEJ1xOv/yMknBEJtys5q4mQdJ8HtqncLIzj9S');
+insert into Users (user_id, user_name, full_name, password) values (6, 'twinsley5', 'Teresina Winsley', '$2a$04$exv9oacIkhYUDNHDFW/pjOXQNuSoW2EcGMdt6ZPUb6YXSvGVAUkYS');
+insert into Users (user_id, user_name, full_name, password) values (7, 'cpopland6', 'Charisse Popland', '$2a$04$IhHhUyChlz1hOxHZaixsHOYW8Ti2WzaYtgHNHHrQckUXvel2yZpuS');
+insert into Users (user_id, user_name, full_name, password) values (8, 'areina7', 'Angelika Reina', '$2a$04$8DpOAUJyDySF3D5liKlXT.V5nUFP/5vmenMPCRJSLyEN/s8DaK6.6');
+insert into Users (user_id, user_name, full_name, password) values (9, 'lchaundy8', 'Lawry Chaundy', '$2a$04$6nMMyWB2ffS8c8Tk7o2gNORpwp4xHRNcK1lWUNDWsygHx.aJ7J016');
+insert into Users (user_id, user_name, full_name, password) values (10, 'bmccluney9', 'Benedict McCluney', '$2a$04$Ax33.ClLD7OQO3VA/zF8Bu9bjEdtIjJfa2HUnT2Vvk/Mhs.MWcEvO');

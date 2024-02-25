@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <div className="font-mono">
       <h1 className="underline text-5xl text-center">
         Database Design Project 1
       </h1>
