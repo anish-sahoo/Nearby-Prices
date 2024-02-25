@@ -1,11 +1,10 @@
 import PropTypes from "prop-types";
+import NavbarMaker from "./NavbarMaker";
 
 const Layout = ({ children }) => {
   return (
     <div className="font-mono">
-      <h1 className="underline text-5xl text-center">
-        Database Design Project 1
-      </h1>
+      <NavbarMaker />
       {children}
       <p>Created by Anish Sahoo</p>
     </div>
