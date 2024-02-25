@@ -20,7 +20,7 @@ const TestPage = () => {
 
   return (
     <div>
-      <Button onClick={()=>fetchData()} color="primary">
+      <Button onClick={() => fetchData()} color="primary">
         Fetch Data
       </Button>
       {error && <p style={{ color: "red" }}>{error}</p>}

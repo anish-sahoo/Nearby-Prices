@@ -1,13 +1,19 @@
-import TestPage from "./components/TestPage";
+import HomePage from "./components/HomePage";
 import Layout from "./components/Layout";
+import TestPage from "./components/TestPage";
+import { Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const App = () => {
   return (
-    <div className=" h-full min-h-screen w-screen bg-blue-200">
+    <BrowserRouter>
       <Layout>
-        <TestPage />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/test" element={<TestPage />} />
+        </Routes>
       </Layout>
-    </div>
+    </BrowserRouter>
   );
 };
 

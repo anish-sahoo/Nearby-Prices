@@ -3,7 +3,7 @@ import NavbarMaker from "./NavbarMaker";
 
 const Layout = ({ children }) => {
   return (
-    <div className="font-mono">
+    <div className="font-mono h-full min-h-screen w-screen bg-blue-200">
       <NavbarMaker />
       {children}
       <p>Created by Anish Sahoo</p>

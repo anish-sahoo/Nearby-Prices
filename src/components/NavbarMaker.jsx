@@ -1,28 +1,27 @@
 import {
-  Navbar, 
-  NavbarBrand, 
-  NavbarContent, 
-  NavbarItem, 
-  Link
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
 } from "@nextui-org/react";
+import { Link } from "react-router-dom";
 
 const NavbarMaker = () => {
   return (
     <div className="w-full bg-blue-500">
       <Navbar>
         <NavbarContent className="flex">
-          <NavbarBrand className="text-3xl font-sans">Prices Nearby</NavbarBrand>
+          <NavbarBrand className="text-3xl font-sans">
+            Prices Nearby
+          </NavbarBrand>
           <NavbarItem className="mx-4">
-          <Link color="primary">Discover</Link>
+            <Link to="/">Discover</Link>
           </NavbarItem>
           <NavbarItem className="mx-4">
-            <Link color="primary">About</Link>
-          </NavbarItem>
-          <NavbarItem className="mx-4">
-          <Link color="primary">Contact</Link>
+            <Link to="/test">Test</Link>
           </NavbarItem>
         </NavbarContent>
-    </Navbar>
+      </Navbar>
     </div>
   );
 };
