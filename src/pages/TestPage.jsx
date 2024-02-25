@@ -7,8 +7,10 @@ const TestPage = () => {
   const fetchData = async () => {
     try {
       const response = await fetch("/api/data");
-      console.log(response);
-      setData((await response.json()).message);
+      const data = await response.json();
+      // console.log(response);
+      console.log(data);
+      setData(data.message);
     } catch (error) {
       console.error("Error fetching data:", error.message);
       setError("Error fetching data. Please try again.");
