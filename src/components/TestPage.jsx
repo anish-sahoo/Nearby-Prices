@@ -1,3 +1,4 @@
+import { Button } from "@nextui-org/react";
 import { useState } from "react";
 
 const TestPage = () => {
@@ -19,12 +20,9 @@ const TestPage = () => {
 
   return (
     <div>
-      <button
-        onClick={fetchData}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
-      >
+      <Button onClick={fetchData()} color="primary">
         Fetch Data
-      </button>
+      </Button>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {data && <p className="text-3xl text-blue-300">{data}</p>}
     </div>

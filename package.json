@@ -11,7 +11,9 @@
     "test": "vite test"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.2.9",
     "express": "^4.18.2",
+    "framer-motion": "^11.0.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
