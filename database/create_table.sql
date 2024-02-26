@@ -49,7 +49,7 @@ CREATE TABLE "Prices" (
 	PRIMARY KEY("item_id","store_id"),
 	FOREIGN KEY("item_id") REFERENCES "Items"("item_id"),
 	FOREIGN KEY("store_id") REFERENCES "Stores"("store_id")
-)
+);
 
 CREATE TABLE "Stores" (
 	"store_id"	INTEGER,
@@ -61,7 +61,7 @@ CREATE TABLE "Stores" (
 	FOREIGN KEY("location_id") REFERENCES "Geolocation"("location_id"),
 	FOREIGN KEY("expense_rating_id") REFERENCES "ExpenseRatings"("expense_rating_id"),
 	FOREIGN KEY("culture_specialty_id") REFERENCES "CultureSpecialty"("id")
-)
+);
 
 CREATE TABLE "Users" (
 	"user_id"	INTEGER NOT NULL,
