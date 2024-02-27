@@ -24,20 +24,24 @@ const HomePage = () => {
           className="w-1/2 light"
         />
         <div className="flex flex-row">
-        <Button
-          className="p-2 m-1"
-          onClick={() => items.length === 0 && handleItemRetrieval()}
-          color="primary"
-        >
-          Search
-        </Button>
-        <Button className="p-2 m-1" color="primary">Clear</Button>
-        <Button className="p-2 m-1" color="primary">Advanced Search</Button>
+          <Button
+            className="p-2 m-1"
+            onClick={() => items.length === 0 && handleItemRetrieval()}
+            color="primary"
+          >
+            Search
+          </Button>
+          <Button className="p-2 m-1" color="primary">
+            Clear
+          </Button>
+          <Button className="p-2 m-1" color="primary">
+            Advanced Search
+          </Button>
         </div>
       </div>
       <div className="flex flex-row flex-wrap h-full gap-6 px-20 justify-center mx-auto">
         {items.length != 0 &&
-          items.map((item) => <ItemCard key={item.id} item={item}/>)}
+          items.map((item) => <ItemCard key={item.id} item={item} />)}
       </div>
     </div>
   );
