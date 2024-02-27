@@ -16,16 +16,20 @@ Current tech stack plan - node+express+react+sqlite+js
 ## Try it out
 
 To set this project up, run these commands in a terminal:
+
 ```bash
 git clone https://github.com/anish-sahoo/Nearby-Prices.git
 cd NearbyPrices
 npm install
 ```
+
 Then use `npm start` to run the project.
 
 `npm start` runs the app in the development mode.\
 Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
 The page will reload when you make changes.
-___
+
+---
+
 ### This project was created using [Vite](https://vite.com), and uses [TailwindCSS](https://tailwindcss.com/) & [NextUI](https://nextui.org/).

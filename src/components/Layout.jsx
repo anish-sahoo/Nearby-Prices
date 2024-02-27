@@ -3,10 +3,9 @@ import NavbarMaker from "./NavbarMaker";
 
 const Layout = ({ children }) => {
   return (
-    <div className="font-mono h-full min-h-screen w-screen bg-blue-200">
+    <div className="font-mono h-full min-h-screen bg-gradient-to-br from-cyan-300 to-orange-200 dark">
       <NavbarMaker />
       {children}
-      <p>Created by Anish Sahoo</p>
     </div>
   );
 };
