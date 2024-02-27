@@ -8,15 +8,15 @@ import { Link } from "react-router-dom";
 
 const NavbarMaker = () => {
   return (
-      <Navbar isBlurred={false} className="bg-gray-900">
+      <Navbar isBlurred={true} className="light">
         <NavbarContent className="flex">
-          <NavbarBrand className="text-3xl font-sans text-gray-300">
+          <NavbarBrand className="text-3xl font-sans text-gray-800">
             Prices Nearby
           </NavbarBrand>
-          <NavbarItem className="mx-4 text-gray-300">
+          <NavbarItem className="mx-4 text-gray-800">
             <Link to="/">Discover</Link>
           </NavbarItem>
-          <NavbarItem className="mx-4 text-gray-300">
+          <NavbarItem className="mx-4 text-gray-800">
             <Link to="/test">Test</Link>
           </NavbarItem>
         </NavbarContent>

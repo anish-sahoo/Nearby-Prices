@@ -21,7 +21,7 @@ const HomePage = () => {
           isClearable
           radius="lg"
           placeholder="Type to search..."
-          className="w-1/2"
+          className="w-1/2 light"
         />
         <div className="flex flex-row">
         <Button
