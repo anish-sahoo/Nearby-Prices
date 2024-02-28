@@ -1,31 +1,31 @@
-DROP TABLE IF EXISTS "Categories";
-DROP TABLE IF EXISTS "CultureSpecialty";
-DROP TABLE IF EXISTS "ExpenseRatings";
-DROP TABLE IF EXISTS "Geolocation";
-DROP TABLE IF EXISTS "Items";
+-- DROP TABLE IF EXISTS "Categories";
+-- DROP TABLE IF EXISTS "CultureSpecialty";
+-- DROP TABLE IF EXISTS "ExpenseRatings";
+-- DROP TABLE IF EXISTS "Geolocation";
+-- DROP TABLE IF EXISTS "Items";
 DROP TABLE IF EXISTS "Prices";
-DROP TABLE IF EXISTS "Stores";
-DROP TABLE IF EXISTS "Users";
+-- DROP TABLE IF EXISTS "Stores";
+-- DROP TABLE IF EXISTS "Users";
 
-CREATE TABLE "Categories" (
+CREATE TABLE IF NOT EXISTS "Categories" (
 	"category_id"	INTEGER NOT NULL,
 	"category_name"	TEXT NOT NULL UNIQUE,
 	PRIMARY KEY("category_id" AUTOINCREMENT)
 );
 
-CREATE TABLE "CultureSpecialty" (
+CREATE TABLE IF NOT EXISTS "CultureSpecialty" (
 	"id"	INTEGER,
 	"name"	TEXT NOT NULL UNIQUE,
 	PRIMARY KEY("id")
 );
 
-CREATE TABLE "ExpenseRatings" (
+CREATE TABLE IF NOT EXISTS "ExpenseRatings" (
 	"expense_rating_id"	INTEGER,
 	"expense_rating"	TEXT NOT NULL UNIQUE,
 	PRIMARY KEY("expense_rating_id" AUTOINCREMENT)
 );
 
-CREATE TABLE "Geolocation" (
+CREATE TABLE IF NOT EXISTS "Geolocation" (
 	"location_id"	INTEGER,
 	"latitude"	REAL NOT NULL,
 	"longitude"	REAL NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE "Geolocation" (
 	PRIMARY KEY("location_id","latitude","longitude")
 );
 
-CREATE TABLE "Items" (
+CREATE TABLE IF NOT EXISTS "Items" (
 	"item_id"	INTEGER,
 	"item_name"	TEXT NOT NULL,
 	"category_id"	INTEGER NOT NULL,
@@ -42,16 +42,17 @@ CREATE TABLE "Items" (
 	FOREIGN KEY("category_id") REFERENCES "Categories"("category_id")
 );
 
-CREATE TABLE "Prices" (
+CREATE TABLE IF NOT EXISTS "Prices" (
 	"item_id"	INTEGER,
 	"store_id"	INTEGER,
 	"price"	REAL NOT NULL,
+	"timestamp" DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY("item_id","store_id"),
 	FOREIGN KEY("item_id") REFERENCES "Items"("item_id"),
 	FOREIGN KEY("store_id") REFERENCES "Stores"("store_id")
 );
 
-CREATE TABLE "Stores" (
+CREATE TABLE IF NOT EXISTS "Stores" (
 	"store_id"	INTEGER,
 	"location_id"	INTEGER NOT NULL,
 	"expense_rating_id"	INTEGER NOT NULL,
@@ -63,7 +64,7 @@ CREATE TABLE "Stores" (
 	FOREIGN KEY("culture_specialty_id") REFERENCES "CultureSpecialty"("id")
 );
 
-CREATE TABLE "Users" (
+CREATE TABLE IF NOT EXISTS "Users" (
 	"user_id"	INTEGER NOT NULL,
 	"user_name"	TEXT NOT NULL UNIQUE,
 	"full_name"	TEXT NOT NULL,
