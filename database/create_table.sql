@@ -3,7 +3,7 @@
 -- DROP TABLE IF EXISTS "ExpenseRatings";
 -- DROP TABLE IF EXISTS "Geolocation";
 -- DROP TABLE IF EXISTS "Items";
-DROP TABLE IF EXISTS "Prices";
+-- DROP TABLE IF EXISTS "Prices";
 -- DROP TABLE IF EXISTS "Stores";
 -- DROP TABLE IF EXISTS "Users";
 
