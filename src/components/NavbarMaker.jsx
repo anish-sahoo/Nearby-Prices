@@ -7,16 +7,17 @@ import {
 import { Link } from "react-router-dom";
 
 const NavbarMaker = () => {
+  const textStyle = "text-gray-800 dark:text-gray-100";
   return (
-    <Navbar isBlurred={true} className="light">
+    <Navbar isBlurred={true} className="">
       <NavbarContent className="flex">
-        <NavbarBrand className="text-3xl font-sans text-gray-800">
+        <NavbarBrand className={`text-3xl font-sans ${textStyle}`}>
           Prices Nearby
         </NavbarBrand>
-        <NavbarItem className="mx-4 text-gray-800">
+        <NavbarItem className={`mx-4 ${textStyle}`}>
           <Link to="/">Discover</Link>
         </NavbarItem>
-        <NavbarItem className="mx-4 text-gray-800">
+        <NavbarItem className={`mx-4 ${textStyle}`}>
           <Link to="/test">Test</Link>
         </NavbarItem>
       </NavbarContent>
