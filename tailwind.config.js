@@ -12,7 +12,7 @@ export default {
     extend: {
       colors: {
         tealOrangeBlue: "#233b66",
-        darkOrange: "#C4421A"
+        darkOrange: "#C4421A",
       },
     },
   },

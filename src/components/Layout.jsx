@@ -2,10 +2,13 @@ import PropTypes from "prop-types";
 import NavbarMaker from "./NavbarMaker";
 
 const Layout = ({ children }) => {
-  const darkColors = "dark:bg-gradient-to-br dark:from-tealOrangeBlue dark:to-orange-900";
-  const lightColors = "bg-gradient-to-br from-cyan-400 to-orange-300";
+  const darkColors =
+    "dark:bg-gradient-to-br dark:from-tealOrangeBlue dark:to-orange-900";
+  const lightColors = "bg-gradient-to-r from-cyan-400 to-orange-300";
   return (
-    <div className={`font-mono h-full min-h-screen ${lightColors} ${darkColors} pb-2`}>
+    <div
+      className={`font-mono h-full min-h-screen ${lightColors} ${darkColors} pb-2`}
+    >
       <NavbarMaker />
       {children}
       <h3 className="text-gray-800 text-center mt-12">

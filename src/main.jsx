@@ -3,13 +3,16 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { NextUIProvider } from "@nextui-org/react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <NextUIProvider>
-      <main className="dark">
-      <App />
-      </main>
+      <NextThemesProvider attribute="class" defaultTheme="dark">
+        <main>
+          <App />
+        </main>
+      </NextThemesProvider>
     </NextUIProvider>
   </React.StrictMode>,
 );

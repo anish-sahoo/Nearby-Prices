@@ -6,8 +6,10 @@ const HomePage = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {handleItemRetrieval()}, []);
-  
+  useEffect(() => {
+    handleItemRetrieval();
+  }, []);
+
   const handleItemRetrieval = async () => {
     // Fetch items from API
     const data = await fetch("/api/items");
@@ -18,6 +20,7 @@ const HomePage = () => {
   };
 
   const darkButtonStyle = "dark:bg-indigo-800 dark:font-bold";
+  const lightButtonStyle = "bg-sky-600 font-bold text-white";
   return (
     <div className="">
       <div className="flex flex-row gap-5 h-full p-4 justify-center mx-auto my-2">
@@ -29,23 +32,29 @@ const HomePage = () => {
         />
         <div className="flex flex-row">
           <Button
-            className={`p-2 m-1 text-lg ${darkButtonStyle}`}
+            className={`p-2 m-1 text-lg ${lightButtonStyle} ${darkButtonStyle}`}
             onClick={() => items.length === 0 && handleItemRetrieval()}
             variant="flat"
           >
             Search
           </Button>
-          <Button className={`p-2 m-1 text-lg ${darkButtonStyle}`}>
+          <Button
+            className={`p-2 m-1 text-lg ${lightButtonStyle} ${darkButtonStyle}`}
+          >
             Clear
           </Button>
-          <Button className={`p-2 m-1 text-lg ${darkButtonStyle}`}>
+          <Button
+            className={`p-2 m-1 text-lg ${lightButtonStyle} ${darkButtonStyle}`}
+          >
             Advanced Search
           </Button>
         </div>
       </div>
-      <div className="flex flex-row flex-wrap h-full gap-6 px-20 justify-center mx-auto">
+      <div className="flex flex-row flex-wrap h-full gap-6 px-20 justify-center mx-auto mt-8">
         {loading ? (
-          <div><Spinner size='lg' label="Loading items"/></div>
+          <div>
+            <Spinner size="lg" label="Loading items" />
+          </div>
         ) : (
           items.length != 0 &&
           items.map((item) => <ItemCard key={item.id} item={item} />)
