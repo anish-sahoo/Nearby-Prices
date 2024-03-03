@@ -11,7 +11,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        tealOrangeBlue: "#233b66",
+        eveningBlue: "#233b66",
+        eveningBlueLight: "#2b477a",
         darkOrange: "#C4421A",
       },
     },

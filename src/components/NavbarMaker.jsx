@@ -7,6 +7,7 @@ import {
 } from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { useTheme } from "next-themes";
+import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 const NavbarMaker = () => {
   const textStyle = "text-gray-800 dark:text-gray-100";
@@ -21,13 +22,25 @@ const NavbarMaker = () => {
           <Link to="/">Discover</Link>
         </NavbarItem>
         <NavbarItem className={`mx-4 ${textStyle}`}>
-          <Link to="/test">Test</Link>
+          <Link to="/test">Contribute</Link>
         </NavbarItem>
         <NavbarItem>
           {theme === "dark" ? (
-            <Button onClick={() => setTheme("light")}>Light</Button>
+            <Button
+              className="text-4xl"
+              onClick={() => setTheme("light")}
+              variant="light"
+            >
+              <MdOutlineDarkMode />
+            </Button>
           ) : (
-            <Button onClick={() => setTheme("dark")}>Dark</Button>
+            <Button
+              className="text-4xl"
+              onClick={() => setTheme("dark")}
+              variant="light"
+            >
+              <MdOutlineLightMode />
+            </Button>
           )}
         </NavbarItem>
       </NavbarContent>

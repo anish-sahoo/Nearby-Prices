@@ -7,8 +7,7 @@ import {
 } from "@nextui-org/react";
 import PropTypes from "prop-types";
 
-const ItemCard = ({ item }) => {
-  console.log("ItemCard", item);
+const ItemCard = ({ item, retriever }) => {
   return (
     <Card className="p-4 w-96 font-sans" isBlurred={true} key={item.item_id}>
       <CardHeader>
@@ -29,7 +28,11 @@ const ItemCard = ({ item }) => {
             </p>
           </Card>
           <div className="flex flex-col">
-            <Button className="w-full mb-1 font-bold text-lg" variant="flat">
+            <Button
+              className="w-full mb-1 font-bold text-lg"
+              variant="flat"
+              onClick={() => retriever(item.item_id)}
+            >
               View
             </Button>
             <Button className="w-full mt-1 font-bold text-lg" variant="flat">
@@ -44,6 +47,7 @@ const ItemCard = ({ item }) => {
 
 ItemCard.propTypes = {
   item: PropTypes.object.isRequired,
+  retriever: PropTypes.func.isRequired,
 };
 
 export default ItemCard;

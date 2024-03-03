@@ -3,7 +3,7 @@ import NavbarMaker from "./NavbarMaker";
 
 const Layout = ({ children }) => {
   const darkColors =
-    "dark:bg-gradient-to-br dark:from-tealOrangeBlue dark:to-orange-900";
+    "dark:bg-gradient-to-br dark:from-eveningBlueLight dark:to-orange-900";
   const lightColors = "bg-gradient-to-r from-cyan-400 to-orange-300";
   return (
     <div
@@ -11,9 +11,12 @@ const Layout = ({ children }) => {
     >
       <NavbarMaker />
       {children}
-      <h3 className="text-gray-800 text-center mt-12">
+      <h3 className="text-gray-800 dark:text-gray-200 text-center mt-12">
         Created by{" "}
-        <a href="https://asahoo.dev" className="text-blue-700">
+        <a
+          href="https://asahoo.dev"
+          className="text-blue-700 dark:text-blue-400"
+        >
           Anish Sahoo
         </a>
         , for CS 3200 Database Design, Spring 2024

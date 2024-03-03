@@ -19,6 +19,13 @@ const HomePage = () => {
     setLoading(false);
   };
 
+  const handleItemInfoRetrieval = async (id) => {
+    // Fetch item info from API
+    const data = await fetch(`/api/items/${id}`);
+    const itemInfo = await data.json();
+    console.log(itemInfo);
+  };
+
   const darkButtonStyle = "dark:bg-indigo-800 dark:font-bold";
   const lightButtonStyle = "bg-sky-600 font-bold text-white";
   return (
@@ -57,7 +64,13 @@ const HomePage = () => {
           </div>
         ) : (
           items.length != 0 &&
-          items.map((item) => <ItemCard key={item.id} item={item} />)
+          items.map((item, index) => (
+            <ItemCard
+              key={index}
+              item={item}
+              retriever={(id) => handleItemInfoRetrieval(id)}
+            />
+          ))
         )}
       </div>
     </div>

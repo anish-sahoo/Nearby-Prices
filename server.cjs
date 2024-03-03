@@ -19,7 +19,14 @@ app.get("/api/data", (req, res) => {
 
 app.get("/api/items", (req, res) => {
   console.log("API Request:", req.url);
-  const statement = `SELECT i.item_id, i.item_name, p.store_id, s.name AS store_name, c.category_name, p.price
+  const statement = `
+  SELECT DISTINCT 
+    i.item_id, 
+    i.item_name, 
+    p.store_id, 
+    s.name AS store_name, 
+    c.category_name, 
+    p.price
   FROM items AS i
     JOIN (
       SELECT item_id, store_id, MIN(price) AS price
@@ -30,6 +37,36 @@ app.get("/api/items", (req, res) => {
     JOIN Stores AS s ON s.store_id = p.store_id
   ORDER BY i.item_id ASC;`;
   db.all(statement, (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json(rows);
+  });
+});
+
+app.get("/api/items/:id", (req, res) => {
+  console.log("API Request:", req.url);
+  const itemId = req.params.id;
+  const statement = `
+  SELECT 
+    s.name AS store_name, 
+    p.price AS price, 
+    p.timestamp AS timestamp, 
+    l.latitude AS latitude, 
+    l.longitude AS longitude, 
+    l.name_of_location AS address, 
+    c.name AS culture_specialty, 
+    e.expense_rating AS expense_rating
+  FROM Stores AS s
+    JOIN Prices AS p ON s.store_id = p.store_id
+    JOIN Geolocation AS l ON s.location_id = l.location_id
+    LEFT JOIN CultureSpecialty AS c ON s.culture_specialty_id = c.id
+    JOIN ExpenseRatings AS e ON s.expense_rating_id = e.expense_rating_id
+  WHERE p.item_id = ?
+  ORDER BY p.price ASC
+  LIMIT 5;`;
+  db.all(statement, [itemId], (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
       return;
