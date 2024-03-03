@@ -2,9 +2,9 @@
 
 
 ## Problem/Solution
-**Problem**: For stores (especially local stores like Asian grocery stores) in a neighborhood/city without online platforms, it is hard for the user to know which store sells something for the cheapest price.\
+`Problem`: For stores (especially local stores like Asian grocery stores) in a neighborhood/city without online platforms, it is hard for the user to know which store sells something for the cheapest price.\
 \
-**Solution**: An application where users can upload prices of common things whenever they go to any store. 
+`Solution`: An application where users can upload prices of common things whenever they go to any store. 
 - Other users can then see the prices/unit for each store and then decide where to go. 
 - It will also have features that will help \the user discover the best prices. 
 - Basically, it's crowdsourced price tracking for offline stores.
