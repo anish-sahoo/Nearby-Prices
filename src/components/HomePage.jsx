@@ -30,12 +30,12 @@ const HomePage = () => {
   const lightButtonStyle = "bg-sky-600 font-bold text-white";
   return (
     <div className="">
-      <div className="flex flex-row gap-5 h-full p-4 justify-center mx-auto my-2">
+      <div className="flex flex-row flex-wrap gap-5 h-full p-4 justify-center mx-auto my-2">
         <Input
           size="sm"
           radius="lg"
           placeholder="Type to search..."
-          className="w-1/2"
+          className="md:w-1/2 w-full"
         />
         <div className="flex flex-row">
           <Button
@@ -57,7 +57,7 @@ const HomePage = () => {
           </Button>
         </div>
       </div>
-      <div className="flex flex-row flex-wrap h-full gap-6 px-20 justify-center mx-auto mt-8">
+      <div className="flex flex-row flex-wrap h-full gap-6 px-4 md:px-20 justify-center mx-auto mt-8">
         {loading ? (
           <div>
             <Spinner size="lg" label="Loading items" />

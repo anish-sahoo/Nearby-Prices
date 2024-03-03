@@ -13,15 +13,15 @@ const NavbarMaker = () => {
   const textStyle = "text-gray-800 dark:text-gray-100";
   const { theme, setTheme } = useTheme();
   return (
-    <Navbar isBlurred={true} className="">
-      <NavbarContent className="flex">
+    <Navbar isBlurred={true} className="max-w-screen">
+      <NavbarContent>
         <NavbarBrand className={`text-3xl font-sans ${textStyle}`}>
           Prices Nearby
         </NavbarBrand>
-        <NavbarItem className={`mx-4 ${textStyle}`}>
+        <NavbarItem className={`mx-4 ${textStyle} hidden md:flex`}>
           <Link to="/">Discover</Link>
         </NavbarItem>
-        <NavbarItem className={`mx-4 ${textStyle}`}>
+        <NavbarItem className={`mx-4 ${textStyle} hidden md:flex`}>
           <Link to="/test">Contribute</Link>
         </NavbarItem>
         <NavbarItem>
