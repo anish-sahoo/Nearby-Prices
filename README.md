@@ -1,6 +1,6 @@
 # Spring 2024, CS3200 (Database Design) Project 1
 
-Preview the website at [**`nearbyprices.asahoo.dev`**](https://nearbyprices.asahoo.dev) (work in progress)
+Preview the website at [**nearbyprices.asahoo.dev**](https://nearbyprices.asahoo.dev) (work in progress)
 
 ## Problem/Solution
 
