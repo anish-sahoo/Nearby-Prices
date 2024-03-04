@@ -1,26 +1,27 @@
 # Spring 2024, CS3200 (Database Design) Project 1
 
-
 ## Problem/Solution
+
 `Problem`: For stores (especially local stores like Asian grocery stores) in a neighborhood/city without online platforms, it is hard for the user to know which store has the cheapest price for a product.\
 \
-`Solution`: An application where users can upload prices of common things whenever they go to any store. 
-- Other users can then see the prices/unit for each store and then decide where to go. 
-- It will also have features that will help \the user discover the best prices. 
+`Solution`: An application where users can upload prices of common things whenever they go to any store.
+
+- Other users can then see the prices/unit for each store and then decide where to go.
+- It will also have features that will help \the user discover the best prices.
 - Basically, it's crowdsourced price tracking for offline stores.
 
-
 ## Table of Contents
+
 - [Requirements Document](Requirements.pdf) (Contains requirements, rules, both diagrams, relational schema, etc.)
 - [UML Class diagram](uml_diagram.png)
-- [Crows Foot ERD](crows_foot_erd.png)
+- [Crow's Foot ERD](crows_foot_erd.png)
 - [SQL CREATE Statement](database/create_table.sql)
 - [SQL Queries](database/queries/)
   - [Query with subquery](database/queries/get_items.sql)
-  - [Join of 3+ tables](database/queries/get_stores_for_item.sql) 
+  - [Join of 3+ tables](database/queries/get_stores_for_item.sql)
   - [A lot of aggregate functions](database/queries/get_statistics_categories.sql)
   - [Query with GROUP BY and HAVING](database/queries/most_expensive_stores.sql)
-  - [Query with CASE/WHEN](database/queries/invertory_size.sql)
+  - [Query with CASE/WHEN](database/queries/inventory_size.sql)
   - [Query with complex criterion and COALESCE](database/queries/location_query.sql)
 
 ## Try it out

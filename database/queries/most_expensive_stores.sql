@@ -1,4 +1,4 @@
--- returns the average prices of stores that have 
+-- returns the average prices of stores
 -- with a minimum price greater than 10
 
 

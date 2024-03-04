@@ -17,7 +17,9 @@ const ItemCard = ({ item, retriever }) => {
         <p>{item.category_id}</p>
         <p>
           Cheapest at{" "}
-          <b className="text-orange-400 dark:text-rose-400 text-lg">{item.store_name}</b>
+          <b className="text-orange-400 dark:text-rose-400 text-lg">
+            {item.store_name}
+          </b>
         </p>
       </CardBody>
       <CardFooter>
@@ -36,7 +38,11 @@ const ItemCard = ({ item, retriever }) => {
               View
             </Button>
             <Button className="w-full mt-1 font-bold text-lg" variant="flat">
-              <a href={`https://www.google.com/maps/@${item.latitude},${item.longitude},15z`}>Locate</a>
+              <a
+                href={`https://www.google.com/maps/@${item.latitude},${item.longitude},15z`}
+              >
+                Locate
+              </a>
             </Button>
           </div>
         </div>
