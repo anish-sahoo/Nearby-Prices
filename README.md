@@ -28,7 +28,7 @@
 To set this project up, run these commands in a terminal:
 
 ```bash
-git clone https://github.com/anish-sahoo/Nearby-Prices.git
+git clone https://github.com/anish-sahoo/NearbyPrices.git
 cd NearbyPrices
 npm install
 ```
