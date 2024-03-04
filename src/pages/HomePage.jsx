@@ -15,7 +15,7 @@ const HomePage = () => {
     const data = await fetch("/api/items");
     console.log(data);
     const items = await data.json();
-    setItems(items);
+    setItems(items.length > 50? items.slice(0,50) : items);
     setLoading(false);
   };
 
