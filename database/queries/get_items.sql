@@ -1,4 +1,4 @@
--- get cheapest price for each item
+-- get cheapest listing for each item
 SELECT 
   i.item_id, 
   i.item_name, 
@@ -19,4 +19,11 @@ FROM items AS i
   LEFT JOIN Geolocation AS g ON s.location_id = g.location_id
 ORDER BY i.item_id ASC;
 
--- one must contain a subquery
+-- Expected Output (first few lines):
+-- item_id	item_name	store_id	store_name	latitude	store_name	category_name	price
+-- 1	Muffins - Assorted	221	Trudeo	32.650887	101.505519	condiment	16.77
+-- 2	Ice - Clear, 300 Lb For Carving	904	LiveZ	48.2216277	6.4359118	condiment	6.21
+-- 4	Ecolab - Orange Frc, Cleaner	345	Mydeo	7.897581	123.768678	produce	10.08
+-- 5	Pastry - Lemon Danish - Mini	591	Demivee	14.1234415	-86.8697068	snacks	2.07
+-- 11	Sauce - Chili	162	Quaxo	43.918776	125.2907021	condiment	10.71
+-- 15	Lettuce - Sea / Sea Asparagus	95	Kamba	-31.485706	-64.2129282	condiment	18.77

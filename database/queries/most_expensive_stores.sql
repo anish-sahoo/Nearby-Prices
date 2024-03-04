@@ -1,7 +1,6 @@
 -- returns the average prices of stores
 -- with a minimum price greater than 10
 
-
 SELECT
   s.store_id,
   s.name AS store_name,
@@ -13,4 +12,11 @@ GROUP BY s.store_id
 HAVING MIN(p.price) > 10
 ORDER BY average_price DESC;
 
--- one must be a group by with a having clause
+-- Expected Output (first few lines):
+-- store_id	store_name	average_price
+-- 949	Muxo	19.97
+-- 208	Tazz	19.9
+-- 249	Browsezoom	19.8
+-- 688	Avavee	19.74
+-- 68	Meejo	19.69
+-- 824	Livetube	19.68

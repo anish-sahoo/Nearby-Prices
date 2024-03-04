@@ -16,6 +16,7 @@
 - [UML Class diagram](uml_diagram.png)
 - [Crow's Foot ERD](crows_foot_erd.png)
 - [SQL CREATE Statement](database/create_table.sql)
+- [SQL Sample Data (Mockaroo) INSERT Statements](https://github.com/anish-sahoo/NearbyPrices/tree/main/database/mockaroo_data)
 - [SQL Queries](database/queries/)
   - [Query with subquery](database/queries/get_items.sql)
   - [Join of 3+ tables](database/queries/get_stores_for_item.sql)

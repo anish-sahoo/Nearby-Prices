@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Input, Spinner } from "@nextui-org/react";
-import ItemCard from "./ItemCard";
+import ItemCard from "../components/ItemCard";
 
 const HomePage = () => {
   const [items, setItems] = useState([]);
