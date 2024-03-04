@@ -29,8 +29,8 @@ CREATE TABLE IF NOT EXISTS "Geolocation" (
 	"location_id"	INTEGER,
 	"latitude"	REAL NOT NULL,
 	"longitude"	REAL NOT NULL,
-	"name_of_location"	TEXT,
-	PRIMARY KEY("location_id","latitude","longitude")
+	"name_of_location"	TEXT UNIQUE NOT NULL,
+	PRIMARY KEY("location_id" AUTOINCREMENT)
 );
 
 CREATE TABLE IF NOT EXISTS "Items" (
