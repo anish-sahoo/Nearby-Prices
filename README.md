@@ -20,6 +20,7 @@
   - [Join of 3+ tables](database/queries/get_stores_for_item.sql) 
   - [A lot of aggregate functions](database/queries/get_statistics_categories.sql)
   - [Query with GROUP BY and HAVING](database/queries/most_expensive_stores.sql)
+  - [Query with advanced features (CASE/WHEN)](database/queries/invertory_size.sql)
 
 ## Try it out
 
