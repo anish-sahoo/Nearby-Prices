@@ -18,3 +18,5 @@ FROM items AS i
   JOIN Stores AS s ON s.store_id = p.store_id
   LEFT JOIN Geolocation AS g ON s.location_id = g.location_id
 ORDER BY i.item_id ASC;
+
+-- one must contain a subquery

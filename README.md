@@ -16,8 +16,10 @@
 - [Crows Foot ERD](crows_foot_erd.png)
 - [SQL CREATE Statement](database/create_table.sql)
 - [SQL Queries](database/queries/)
-  - [Get items ](database/queries/get_items.sql)
-  - [Get all the prices for one item](database/queries/get_stores_for_item.sql) 
+  - [Query with subquery](database/queries/get_items.sql)
+  - [Join of 3+ tables](database/queries/get_stores_for_item.sql) 
+  - [A lot of aggregate functions](database/queries/get_statistics_categories.sql)
+  - [Query with GROUP BY and HAVING](database/queries/most_expensive_stores.sql)
 
 ## Try it out
 

@@ -18,3 +18,5 @@ LIMIT 5;
 
 -- gets the top 5 stores that have the item with the lowest price
 -- 11 is a filler value for the item_id
+
+-- join of at least three tables
