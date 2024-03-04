@@ -27,7 +27,7 @@
 
 ## Try it out
 
-To set this project up, run these commands in a terminal:
+To set this project up, run these commands in a terminal: (ensure to have [Node.js](https://nodejs.org/) installed)
 
 ```bash
 git clone https://github.com/anish-sahoo/NearbyPrices.git
@@ -44,4 +44,4 @@ The page will reload when you make changes.
 
 ---
 
-### This project was created using [Vite](https://vite.com), and uses [TailwindCSS](https://tailwindcss.com/) & [NextUI](https://nextui.org/).
+### This project was created using [Vite](https://vitejs.dev/), and uses [TailwindCSS](https://tailwindcss.com/) & [NextUI](https://nextui.org/).
