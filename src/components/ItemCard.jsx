@@ -6,7 +6,6 @@ import {
   CardHeader,
 } from "@nextui-org/react";
 import PropTypes from "prop-types";
-import { FaSearch, FaLocationDot } from "react-icons/fa";
 
 const ItemCard = ({ item, retriever }) => {
   return (
@@ -34,10 +33,10 @@ const ItemCard = ({ item, retriever }) => {
               variant="flat"
               onClick={() => retriever(item.item_id)}
             >
-              View<FaSearch />
+              View
             </Button>
             <Button className="w-full mt-1 font-bold text-lg" variant="flat">
-              <a href={`https://www.google.com/maps/@${item.latitude},${item.longitude},15z`}>Locate</a><FaLocationDot />
+              <a href={`https://www.google.com/maps/@${item.latitude},${item.longitude},15z`}>Locate</a>
             </Button>
           </div>
         </div>

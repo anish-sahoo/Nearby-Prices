@@ -1,5 +1,13 @@
 -- get cheapest price for each item
-SELECT i.item_id, i.item_name, p.store_id, s.name AS store_name, g.latitude, g.longitude AS store_name, c.category_name, p.price
+SELECT 
+  i.item_id, 
+  i.item_name, 
+  p.store_id, 
+  s.name AS store_name, 
+  g.latitude, 
+  g.longitude AS store_name, 
+  c.category_name, 
+  p.price
 FROM items AS i
   JOIN (
     SELECT item_id, store_id, MIN(price) AS price
