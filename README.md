@@ -11,7 +11,7 @@
 
 
 ## Table of Contents
-- [Requirements Document](requirements.pdf)
+- [Requirements Document](Requirements.pdf)
 - [UML Class diagram](uml_diagram.png)
 - [Crows Foot ERD](crows_foot_erd.png)
 - [SQL CREATE Statement](database/create_table.sql)
