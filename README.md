@@ -1,5 +1,7 @@
 # Spring 2024, CS3200 (Database Design) Project 1
 
+Preview the website at [**`nearbyprices.asahoo.dev`**](https://nearbyprices.asahoo.dev) (work in progress)
+
 ## Problem/Solution
 
 `Problem`: For stores (especially local stores like Asian grocery stores) in a neighborhood/city without online platforms, it is hard for the user to know which store has the cheapest price for a product.\
