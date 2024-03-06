@@ -3,7 +3,7 @@ import {
   Card,
   CardBody,
   CardFooter,
-  CardHeader,
+  CardHeader
 } from "@nextui-org/react";
 import PropTypes from "prop-types";
 

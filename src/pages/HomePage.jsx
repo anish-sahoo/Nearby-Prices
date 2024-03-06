@@ -3,12 +3,15 @@ import { Button, Input, Spinner } from "@nextui-org/react";
 import ItemCard from "../components/ItemCard";
 import { FaSearch } from "react-icons/fa";
 import { MdClear } from "react-icons/md";
+import ItemModal from "../components/ItemModal";
 
 const HomePage = () => {
   const [items, setItems] = useState([]);
   const [displayItems, setDisplayItems] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedItemInfo, setSelectedItemInfo] = useState({});
 
   useEffect(() => {
     handleItemRetrieval();
@@ -43,6 +46,8 @@ const HomePage = () => {
     const data = await fetch(`/api/items/${id}`);
     const itemInfo = await data.json();
     console.log(itemInfo);
+    setSelectedItemInfo(itemInfo);
+    setIsModalOpen(true);
   };
 
   const darkButtonStyle = "dark:bg-indigo-800 dark:font-bold";
@@ -100,6 +105,11 @@ const HomePage = () => {
           ))
         )}
       </div>
+      <ItemModal
+        items={selectedItemInfo}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </div>
   );
 };
