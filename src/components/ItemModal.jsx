@@ -27,7 +27,7 @@ const ItemModal = ({ items, isOpen, onClose }) => {
                       <h1 className="text-3xl h-full">{store.store_name}</h1>
                       <h2>{store.address}</h2>
                     </div>
-                    <h1 className="text-3xl flex my-auto">{store.price}</h1>
+                    <h1 className={`text-3xl flex my-auto ${index === 0 ? 'text-green-400':''}`}>{store.price}</h1>
                   </div>
                   <div className="flex flex-row w-full mt-1">
                     <Button className="flex mx-auto w-full mr-1">

@@ -15,7 +15,8 @@ const ItemCard = ({ item, retriever }) => {
       key={item.item_id}
     >
       <CardHeader>
-        <h1 className="text-wrap text-2xl font-bold">{item.item_name}</h1>
+        <h1 className="text-wrap text-2xl font-bold hover:underline" 
+              onClick={() => retriever(item.item_id, item.item_name)}>{item.item_name}</h1>
       </CardHeader>
       <CardBody className="flex justify-end">
         <p>{item.category_id}</p>
@@ -35,11 +36,10 @@ const ItemCard = ({ item, retriever }) => {
           </Card>
           <div className="flex flex-col">
             <Button
-              className="w-full mb-1 font-bold text-lg"
+              className="w-full mb-1 font-bold text-wrap"
               variant="flat"
-              onClick={() => retriever(item.item_id, item.item_name)}
             >
-              View
+              Update Price
             </Button>
             <Button className="w-full mt-1 font-bold text-lg" variant="flat">
               <a
