@@ -20,17 +20,22 @@ const NavbarMaker = () => {
         <NavbarBrand className={`text-3xl font-sans ${textStyle}`}>
           Prices Nearby
         </NavbarBrand>
-        <NavbarItem className={`mx-4 text-lg ${textStyle} hidden md:flex ${selectedItem === 0 ? 'font-bold':''}`}>
-          <Link to="/" onClick={() => setSelectedItem(0)}>Discover</Link>
+        <NavbarItem
+          className={`mx-4 text-lg ${textStyle} hidden md:flex ${selectedItem === 0 ? "font-bold" : ""}`}
+        >
+          <Link to="/" onClick={() => setSelectedItem(0)}>
+            Discover
+          </Link>
         </NavbarItem>
-        <NavbarItem className={`mx-4 text-lg ${textStyle} hidden md:flex ${selectedItem === 1 ? 'font-bold':''}`}>
-          <Link to="/test" onClick={() => setSelectedItem(1)}>Contribute</Link>
+        <NavbarItem
+          className={`mx-4 text-lg ${textStyle} hidden md:flex ${selectedItem === 1 ? "font-bold" : ""}`}
+        >
+          <Link to="/test" onClick={() => setSelectedItem(1)}>
+            Contribute
+          </Link>
         </NavbarItem>
         <NavbarItem>
-          <Button
-          className="flex text-lg"
-          variant="flat"
-          >
+          <Button className="flex text-lg" variant="flat">
             <Link to="/">Log In</Link>
           </Button>
         </NavbarItem>

@@ -17,9 +17,10 @@ const HomePage = () => {
   useEffect(() => {
     // Filter items based on search
     if (search.length > 0) {
-      const filteredItems = items.filter((item) =>
-        item.item_name.toLowerCase().includes(search.toLowerCase()) ||
-        item.store_name.toLowerCase().includes(search.toLowerCase())
+      const filteredItems = items.filter(
+        (item) =>
+          item.item_name.toLowerCase().includes(search.toLowerCase()) ||
+          item.store_name.toLowerCase().includes(search.toLowerCase()),
       );
       setDisplayItems(filteredItems);
     } else {
@@ -63,14 +64,19 @@ const HomePage = () => {
             className={`p-2 m-1 text-lg ${lightButtonStyle} ${darkButtonStyle}`}
             onClick={() => items.length === 0 && handleItemRetrieval()}
           >
-            <FaSearch/>
+            <FaSearch />
           </Button>
-          {search.length > 0 && <Button
-            className={`p-2 m-1 text-lg ${lightButtonStyle} ${darkButtonStyle}`}
-            onClick={() => {setSearch(""); setDisplayItems(items);}}
-          >
-            <MdClear />
-          </Button>}
+          {search.length > 0 && (
+            <Button
+              className={`p-2 m-1 text-lg ${lightButtonStyle} ${darkButtonStyle}`}
+              onClick={() => {
+                setSearch("");
+                setDisplayItems(items);
+              }}
+            >
+              <MdClear />
+            </Button>
+          )}
           <Button
             className={`p-2 m-1 text-lg ${lightButtonStyle} ${darkButtonStyle}`}
           >
