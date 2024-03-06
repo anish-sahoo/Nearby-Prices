@@ -9,7 +9,7 @@ import PropTypes from "prop-types";
 
 const ItemCard = ({ item, retriever }) => {
   return (
-    <Card className="p-4 w-96 font-sans" isBlurred={true} key={item.item_id}>
+    <Card className="p-4 w-96 font-sans hover:scale-110" isBlurred={true} key={item.item_id}>
       <CardHeader>
         <h1 className="text-wrap text-2xl font-bold">{item.item_name}</h1>
       </CardHeader>
