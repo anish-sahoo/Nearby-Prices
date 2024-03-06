@@ -3,7 +3,7 @@ import {
   Card,
   CardBody,
   CardFooter,
-  CardHeader
+  CardHeader,
 } from "@nextui-org/react";
 import PropTypes from "prop-types";
 
@@ -37,7 +37,7 @@ const ItemCard = ({ item, retriever }) => {
             <Button
               className="w-full mb-1 font-bold text-lg"
               variant="flat"
-              onClick={() => retriever(item.item_id)}
+              onClick={() => retriever(item.item_id, item.item_name)}
             >
               View
             </Button>

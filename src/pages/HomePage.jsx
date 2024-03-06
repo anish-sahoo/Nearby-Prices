@@ -34,19 +34,17 @@ const HomePage = () => {
   const handleItemRetrieval = async () => {
     // Fetch items from API
     const data = await fetch("/api/items");
-    console.log(data.status);
     const items = await data.json();
     setItems(items.slice(0, 50));
     setDisplayItems(items.slice(0, 50));
     setLoading(false);
   };
 
-  const handleItemInfoRetrieval = async (id) => {
+  const handleItemInfoRetrieval = async (id, name) => {
     // Fetch item info from API
     const data = await fetch(`/api/items/${id}`);
     const itemInfo = await data.json();
-    console.log(itemInfo);
-    setSelectedItemInfo(itemInfo);
+    setSelectedItemInfo({ name: name, stores: itemInfo });
     setIsModalOpen(true);
   };
 
@@ -100,7 +98,7 @@ const HomePage = () => {
             <ItemCard
               key={index}
               item={item}
-              retriever={(id) => handleItemInfoRetrieval(id)}
+              retriever={(id, name) => handleItemInfoRetrieval(id, name)}
             />
           ))
         )}
