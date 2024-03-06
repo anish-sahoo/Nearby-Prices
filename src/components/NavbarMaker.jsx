@@ -28,7 +28,7 @@ const NavbarMaker = () => {
   return (
     <Navbar isBlurred={true} className="justify-center">
       <NavbarContent>
-        <NavbarBrand className={`text-lg med:text-3xl  font-sans ${textStyle}`}>
+        <NavbarBrand className={`text-lg med:text-3xl lg:text-3xl  font-sans ${textStyle}`}>
           Prices Nearby
         </NavbarBrand>
         <NavbarItem
