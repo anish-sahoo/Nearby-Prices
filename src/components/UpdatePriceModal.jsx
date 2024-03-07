@@ -5,29 +5,40 @@ import {
   ModalBody,
   Button,
   Input,
+  Card
 } from "@nextui-org/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
 const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
   const [newPrice, setNewPrice] = useState(0);
-  // console.log(item);
   const handlePriceUpdate = (price) => {
     onPriceUpdate(price);
     setNewPrice(0);
     onClose();
-  }
+  };
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onClose} backdrop="blur" size="xl" placement="top-center">
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onClose}
+      backdrop="blur"
+      size="xl"
+      placement="top-center"
+    >
       <ModalContent>
-        <ModalHeader>Update Price</ModalHeader>
-        <ModalHeader className="flex flex-col px-8 pt-8"> 
-          <h1 className="text-2xl font-bold hover:underline">{item.item_name}</h1>
-          <h2 className="text-lg font-bold">{item.store_name}</h2>
-          <p className="text-lg font-bold">${item.price}</p>
+        <ModalHeader>Update Price for {item.item_name}</ModalHeader>
+        <ModalHeader className="flex flex-col px-8 pt-4">
+          <Card className="p-4">
+          <div className="flex w-full h-full flex-row">
+              <h1 className="text-3xl h-full text-wrap w-full text-clip flex-grow">{item.store_name.slice(0, 20) || 'Undefied'}</h1>
+              <h1 className="text-3xl flex my-auto text-green-400">
+                ${item.price}
+              </h1>
+          </div>
+          </Card>
         </ModalHeader>
-        <ModalBody className="flex flex-row px-8 pb-8">
+        <ModalBody className="flex flex-row px-8 pb-6">
           <Input
             size="sm"
             radius="lg"
@@ -36,6 +47,7 @@ const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
             className="mb-2"
             onChange={(e) => setNewPrice(e.target.value)}
             value={newPrice}
+            label="New Price"
           />
           <Button
             className=""

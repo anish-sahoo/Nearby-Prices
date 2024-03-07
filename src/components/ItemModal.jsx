@@ -11,7 +11,13 @@ import PropTypes from "prop-types";
 
 const ItemModal = ({ items, isOpen, onClose }) => {
   return (
-    <Modal isOpen={isOpen} onOpenChange={onClose} backdrop="blur" size="xl" placement="top-center">
+    <Modal
+      isOpen={isOpen}
+      onOpenChange={onClose}
+      backdrop="blur"
+      size="xl"
+      placement="top-center"
+    >
       <ModalContent>
         {(onClose) => (
           <div>
@@ -20,13 +26,20 @@ const ItemModal = ({ items, isOpen, onClose }) => {
             </ModalHeader>
             <ModalBody>
               {items.stores.map((store, index) => (
-                <Card key={index} className="p-3 dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-900">
+                <Card
+                  key={index}
+                  className="p-3"
+                >
                   <div className="flex flex-row w-full h-full">
                     <div className="w-full h-full">
                       <h1 className="text-3xl h-full">{store.store_name}</h1>
                       <h2>{store.address}</h2>
                     </div>
-                    <h1 className={`text-3xl flex my-auto ${index === 0 ? 'text-green-400':''}`}>{store.price}</h1>
+                    <h1
+                      className={`text-3xl flex my-auto ${index === 0 ? "text-green-400" : ""}`}
+                    >
+                      {store.price}
+                    </h1>
                   </div>
                   <div className="flex flex-row w-full mt-1">
                     <Button className="flex mx-auto w-full mr-1">
@@ -40,7 +53,7 @@ const ItemModal = ({ items, isOpen, onClose }) => {
                     <Button className="flex w-full mx-auto my-auto text-wrap ml-1">
                       Update Price
                     </Button>
-                    </div>
+                  </div>
                 </Card>
               ))}
             </ModalBody>
