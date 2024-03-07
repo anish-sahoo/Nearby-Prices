@@ -9,9 +9,9 @@ import {
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate }) => {
+const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
   const [newPrice, setNewPrice] = useState(0);
-
+  // console.log(item);
   const handlePriceUpdate = (price) => {
     onPriceUpdate(price);
     setNewPrice(0);
@@ -22,7 +22,12 @@ const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate }) => {
     <Modal isOpen={isOpen} onOpenChange={onClose} backdrop="blur" size="xl" placement="top-center">
       <ModalContent>
         <ModalHeader>Update Price</ModalHeader>
-        <ModalBody>
+        <ModalHeader className="flex flex-col px-8 pt-8"> 
+          <h1 className="text-2xl font-bold hover:underline">{item.item_name}</h1>
+          <h2 className="text-lg font-bold">{item.store_name}</h2>
+          <p className="text-lg font-bold">${item.price}</p>
+        </ModalHeader>
+        <ModalBody className="flex flex-row px-8 pb-8">
           <Input
             size="sm"
             radius="lg"
@@ -33,9 +38,10 @@ const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate }) => {
             value={newPrice}
           />
           <Button
-            className="w-full"
+            className=""
             variant="flat"
             onClick={() => handlePriceUpdate(newPrice)}
+            size="lg"
           >
             Update
           </Button>
@@ -49,6 +55,18 @@ UpdatePriceModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onPriceUpdate: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
 };
 
 export default UpdatePriceModal;
+
+// {
+//   "item_id": 94,
+//   "item_name": "Sausage - Andouille",
+//   "store_id": 457,
+//   "store_name": "Skinte",
+//   "latitude": -6.9236,
+//   "longitude": 113.2611,
+//   "category_name": "misc",
+//   "price": 4.75
+// }

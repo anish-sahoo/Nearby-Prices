@@ -9,8 +9,7 @@ const TestPage = () => {
     try {
       const response = await fetch("/api/data");
       const data = await response.json();
-      // console.log(response);
-      console.log(data);
+      // console.log(data);
       setData(data.message);
     } catch (error) {
       console.error("Error fetching data:", error.message);

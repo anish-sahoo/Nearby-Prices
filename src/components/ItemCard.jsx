@@ -14,7 +14,7 @@ const ItemCard = ({ item, retriever }) => {
 
   return (
     <Card
-      className="p-4 w-96 font-sans hover:scale-110"
+      className="p-4 w-96 font-sans md:hover:scale-110"
       isBlurred={true}
       key={item.item_id}
     >
@@ -61,6 +61,7 @@ const ItemCard = ({ item, retriever }) => {
                 console.log(updatedPrice);
                 setUpdatePriceModalOpen(false);
               }}
+              item={item}
             />
           </div>
         </div>

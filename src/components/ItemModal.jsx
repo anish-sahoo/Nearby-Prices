@@ -10,7 +10,6 @@ import {
 import PropTypes from "prop-types";
 
 const ItemModal = ({ items, isOpen, onClose }) => {
-  console.log(items);
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} backdrop="blur" size="xl" placement="top-center">
       <ModalContent>
@@ -21,7 +20,7 @@ const ItemModal = ({ items, isOpen, onClose }) => {
             </ModalHeader>
             <ModalBody>
               {items.stores.map((store, index) => (
-                <Card key={index} className="p-3">
+                <Card key={index} className="p-3 dark:bg-gradient-to-br dark:from-gray-900 dark:to-slate-900">
                   <div className="flex flex-row w-full h-full">
                     <div className="w-full h-full">
                       <h1 className="text-3xl h-full">{store.store_name}</h1>
