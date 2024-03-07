@@ -6,8 +6,12 @@ import {
   CardHeader,
 } from "@nextui-org/react";
 import PropTypes from "prop-types";
+import UpdatePriceModal from "./UpdatePriceModal";
+import { useState } from "react";
 
 const ItemCard = ({ item, retriever }) => {
+  const [isUpdatePriceModalOpen, setUpdatePriceModalOpen] = useState(false);
+
   return (
     <Card
       className="p-4 w-96 font-sans hover:scale-110"
@@ -38,6 +42,7 @@ const ItemCard = ({ item, retriever }) => {
             <Button
               className="w-full mb-1 font-bold text-wrap"
               variant="flat"
+              onClick={() => setUpdatePriceModalOpen(true)}
             >
               Update Price
             </Button>
@@ -49,6 +54,14 @@ const ItemCard = ({ item, retriever }) => {
                 Locate
               </a>
             </Button>
+            <UpdatePriceModal
+              isOpen={isUpdatePriceModalOpen}
+              onClose={() => setUpdatePriceModalOpen(false)}
+              onPriceUpdate={(updatedPrice) => {
+                console.log(updatedPrice);
+                setUpdatePriceModalOpen(false);
+              }}
+            />
           </div>
         </div>
       </CardFooter>
