@@ -52,7 +52,7 @@ const ItemCard = ({ item, retriever }) => {
             </Button>
             <Button className="w-full mt-1 font-bold text-lg" variant="flat">
               <a
-                href={`https://www.google.com/maps/@${item.latitude},${item.longitude},15z`}
+                href={`https://www.google.com/maps/@${item.latitude},${item.longitude},18z`}
                 target="_blank"
               >
                 Locate
@@ -63,6 +63,7 @@ const ItemCard = ({ item, retriever }) => {
               onClose={() => setUpdatePriceModalOpen(false)}
               onPriceUpdate={(updatedPrice) => {
                 console.log(updatedPrice);
+                console.log(item);
                 setUpdatePriceModalOpen(false);
               }}
               item={item}

@@ -44,7 +44,7 @@ const ItemModal = ({ items, isOpen, onClose }) => {
                   <div className="flex flex-row w-full mt-1">
                     <Button className="flex mx-auto w-full mr-1">
                       <a
-                        href={`https://www.google.com/maps/@${store.latitude},${store.longitude},15z`}
+                        href={`https://www.google.com/maps/@${store.latitude},${store.longitude},18z`}
                         target="_blank"
                       >
                         Locate

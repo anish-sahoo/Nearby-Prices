@@ -23,7 +23,8 @@ const HomePage = () => {
       const filteredItems = items.filter(
         (item) =>
           item.item_name.toLowerCase().includes(search.toLowerCase()) ||
-          item.store_name.toLowerCase().includes(search.toLowerCase()),
+          item.store_name.toLowerCase().includes(search.toLowerCase()) ||
+          item.category_id.toLowerCase().includes(search.toLowerCase())
       );
       setDisplayItems(filteredItems);
     } else {
