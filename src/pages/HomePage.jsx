@@ -4,6 +4,7 @@ import ItemCard from "../components/ItemCard";
 import { FaSearch } from "react-icons/fa";
 import { MdClear } from "react-icons/md";
 import ItemModal from "../components/ItemModal";
+import UpdatePriceModal from "../components/UpdatePriceModal";
 
 const HomePage = () => {
   const [items, setItems] = useState([]);
@@ -12,11 +13,14 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItemInfo, setSelectedItemInfo] = useState({});
+  const [isUpdatePriceModalOpen, setUpdatePriceModalOpen] = useState(false);
 
+  // retrieve all the items on page load
   useEffect(() => {
     handleItemRetrieval();
   }, []);
 
+  // update the display items based on search
   useEffect(() => {
     // Filter items based on search
     if (search.length > 0) {
@@ -32,6 +36,7 @@ const HomePage = () => {
     }
   }, [search, items]);
 
+  // retrieve all the items
   const handleItemRetrieval = async () => {
     // Fetch items from API
     const data = await fetch("/api/items");
@@ -41,13 +46,27 @@ const HomePage = () => {
     setLoading(false);
   };
 
+  // retrieve all the stores for one item
   const handleItemInfoRetrieval = async (id, name) => {
     // Fetch item info from API
     const data = await fetch(`/api/items/${id}`);
     const itemInfo = await data.json();
-    setSelectedItemInfo({ name: name, stores: itemInfo });
+    setSelectedItemInfo({ name: name, item_id: id, stores: itemInfo });
     setIsModalOpen(true);
   };
+
+  // open the modal for updating price
+  const openUpdatePriceModal = (item) => {
+    setSelectedItemInfo(item);
+    setUpdatePriceModalOpen(true);
+  };
+
+  // handle the price update
+  const handlePriceUpdate = (updatedPrice) => {
+    console.log(updatedPrice);
+    console.log(selectedItemInfo);
+    setUpdatePriceModalOpen(false);
+  }
 
   const darkButtonStyle = "dark:bg-indigo-800 dark:font-bold";
   const lightButtonStyle = "bg-sky-600 font-bold text-white";
@@ -100,6 +119,7 @@ const HomePage = () => {
               key={index}
               item={item}
               retriever={(id, name) => handleItemInfoRetrieval(id, name)}
+              openUpdatePriceModal={() => openUpdatePriceModal(item)}
             />
           ))
         )}
@@ -108,6 +128,13 @@ const HomePage = () => {
         items={selectedItemInfo}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        openUpdatePriceModal={(item) => openUpdatePriceModal(item)}
+      />
+      <UpdatePriceModal
+        isOpen={isUpdatePriceModalOpen}
+        onClose={() => setUpdatePriceModalOpen(false)}
+        onPriceUpdate={(newPrice) => handlePriceUpdate(newPrice)}
+        item={selectedItemInfo}
       />
     </div>
   );

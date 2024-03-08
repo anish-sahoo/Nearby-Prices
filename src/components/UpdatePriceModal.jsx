@@ -31,7 +31,7 @@ const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
         <ModalHeader className="flex flex-col px-8 pt-4">
           <Card className="p-4">
           <div className="flex w-full h-full flex-row">
-              <h1 className="text-3xl h-full text-wrap w-full text-clip flex-grow">{item.store_name.slice(0, 20) || 'Undefied'}</h1>
+              <h1 className="text-3xl h-full text-wrap w-full text-clip flex-grow">{item.store_name}</h1>
               <h1 className="text-3xl flex my-auto text-green-400">
                 ${item.price}
               </h1>

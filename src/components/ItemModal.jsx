@@ -9,7 +9,8 @@ import {
 } from "@nextui-org/react";
 import PropTypes from "prop-types";
 
-const ItemModal = ({ items, isOpen, onClose }) => {
+const ItemModal = ({ items, isOpen, onClose, openUpdatePriceModal }) => {
+  console.log('Item Modal',items);
   return (
     <Modal
       isOpen={isOpen}
@@ -25,7 +26,7 @@ const ItemModal = ({ items, isOpen, onClose }) => {
               {items.name}
             </ModalHeader>
             <ModalBody>
-              {items.stores.map((store, index) => (
+              {items && items.stores && items.stores.map((store, index) => (
                 <Card
                   key={index}
                   className="p-3"
@@ -50,7 +51,18 @@ const ItemModal = ({ items, isOpen, onClose }) => {
                         Locate
                       </a>
                     </Button>
-                    <Button className="flex w-full mx-auto my-auto text-wrap ml-1">
+                    <Button 
+                      className="flex w-full mx-auto my-auto text-wrap ml-1"
+                      onClick={() =>
+                        openUpdatePriceModal({
+                          item_id: items.item_id, // Adjust accordingly
+                          item_name: items.name,
+                          store_id: store.store_id,
+                          store_name: store.store_name,
+                          price: store.price,
+                        })
+                      }
+                    >
                       Update Price
                     </Button>
                   </div>
@@ -73,6 +85,26 @@ ItemModal.propTypes = {
   items: PropTypes.array.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
+  openUpdatePriceModal: PropTypes.func.isRequired,
 };
 
 export default ItemModal;
+
+
+// {
+//   "name": "Muffins - Assorted",
+//   "item_id": 1,
+//   "stores": [
+//       {
+//           "store_name": "Trudeo",
+//           "store_id": 221,
+//           "price": 16.77,
+//           "timestamp": "2024-02-28 21:39:37",
+//           "latitude": 32.650887,
+//           "longitude": 101.505519,
+//           "address": "3369 Ludington Road",
+//           "culture_specialty": "European",
+//           "expense_rating": "very expensive"
+//       }
+//   ]
+// }
