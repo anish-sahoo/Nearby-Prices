@@ -5,15 +5,16 @@ import {
   ModalBody,
   Button,
   Input,
-  Card
+  Card,
 } from "@nextui-org/react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
 const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
   const [newPrice, setNewPrice] = useState(0);
-  const handlePriceUpdate = (price) => {
-    onPriceUpdate(price);
+  const handlePriceUpdate = (item_id, item_name, newPrice) => {
+    item.price = newPrice;
+    onPriceUpdate(item_id, item_name, newPrice);
     setNewPrice(0);
     onClose();
   };
@@ -30,12 +31,14 @@ const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
         <ModalHeader>Update Price for {item.item_name}</ModalHeader>
         <ModalHeader className="flex flex-col px-8 pt-4">
           <Card className="p-4">
-          <div className="flex w-full h-full flex-row">
-              <h1 className="text-3xl h-full text-wrap w-full text-clip flex-grow">{item.store_name.slice(0, 20) || 'Undefied'}</h1>
+            <div className="flex w-full h-full flex-row">
+              <h1 className="text-3xl h-full text-wrap w-full text-clip flex-grow">
+                {item.store_name}
+              </h1>
               <h1 className="text-3xl flex my-auto text-green-400">
                 ${item.price}
               </h1>
-          </div>
+            </div>
           </Card>
         </ModalHeader>
         <ModalBody className="flex flex-row px-8 pb-6">
@@ -52,7 +55,9 @@ const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
           <Button
             className=""
             variant="flat"
-            onClick={() => handlePriceUpdate(newPrice)}
+            onClick={() =>
+              handlePriceUpdate(item.item_id, item.item_name, newPrice)
+            }
             size="lg"
           >
             Update

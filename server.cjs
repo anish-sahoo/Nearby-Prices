@@ -54,6 +54,7 @@ app.get("/api/items/:id", (req, res) => {
   const statement = `
   SELECT 
     s.name AS store_name, 
+    s.store_id AS store_id,
     p.price AS price, 
     p.timestamp AS timestamp, 
     l.latitude AS latitude, 
