@@ -55,7 +55,12 @@ const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
             className=""
             variant="flat"
             onClick={() =>
-              handlePriceUpdate(item.item_id, item.item_name, item.store_id, newPrice)
+              handlePriceUpdate(
+                item.item_id,
+                item.item_name,
+                item.store_id,
+                newPrice,
+              )
             }
             size="lg"
           >

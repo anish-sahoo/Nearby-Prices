@@ -66,14 +66,32 @@ const HomePage = () => {
   // handle the price update
   const handlePriceUpdate = (item_id, item_name, store_id, updatedPrice) => {
     setUpdatePriceModalOpen(false);
-    if(updatedPrice === 0) {
+    if (updatedPrice === 0) {
       console.log("Price cannot be 0");
     }
-    console.log("Updating price for", item_name, ", item id", item_id, "store_id", store_id, "to", updatedPrice);
+    console.log(
+      "Updating price for",
+      item_name,
+      ", item id",
+      item_id,
+      "store_id",
+      store_id,
+      "to",
+      updatedPrice,
+    );
     getItemInfo(item_id).then((data) => {
       setSelectedItemInfo({ name: item_name, item_id: item_id, stores: data });
       console.log("data received after promise", data);
-      console.log("Updated price for", item_name, ", item id", item_id, "store_id", store_id, "to", data.filter((store) => store.store_id === store_id)[0].price);
+      console.log(
+        "Updated price for",
+        item_name,
+        ", item id",
+        item_id,
+        "store_id",
+        store_id,
+        "to",
+        data.filter((store) => store.store_id === store_id)[0].price,
+      );
       if (shouldReopenItemModal) {
         setIsModalOpen(true);
         setShouldReopenItemModal(false);
