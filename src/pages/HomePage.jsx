@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdClear } from "react-icons/md";
 import ItemModal from "../components/ItemModal";
 import UpdatePriceModal from "../components/UpdatePriceModal";
-import { getAllItems, getItemInfo } from "../endpoints";
+import { getAllItems, getItemInfo, setNewPrice } from "../endpoints";
 
 const HomePage = () => {
   const [items, setItems] = useState([]);
@@ -67,35 +67,25 @@ const HomePage = () => {
   const handlePriceUpdate = (item_id, item_name, store_id, updatedPrice) => {
     setUpdatePriceModalOpen(false);
     if (updatedPrice === 0) {
-      console.log("Price cannot be 0");
+      console.log(`Price for ${item_name} at store ${store_id} cannot be 0`);
     }
-    console.log(
-      "Updating price for",
-      item_name,
-      ", item id",
-      item_id,
-      "store_id",
-      store_id,
-      "to",
-      updatedPrice,
-    );
-    getItemInfo(item_id).then((data) => {
-      setSelectedItemInfo({ name: item_name, item_id: item_id, stores: data });
-      console.log("data received after promise", data);
-      console.log(
-        "Updated price for",
-        item_name,
-        ", item id",
-        item_id,
-        "store_id",
-        store_id,
-        "to",
-        data.filter((store) => store.store_id === store_id)[0].price,
-      );
-      if (shouldReopenItemModal) {
-        setIsModalOpen(true);
-        setShouldReopenItemModal(false);
-      }
+    setNewPrice(item_id, store_id, updatedPrice).then(() => {
+      getItemInfo(item_id).then((data) => {
+        console.log(
+          updatedPrice !== 0
+            ? `Updated price for ${item_name} at store ${store_id} to ${updatedPrice}`
+            : "Price update failed",
+        );
+        setSelectedItemInfo({
+          name: item_name,
+          item_id: item_id,
+          stores: data,
+        });
+        if (shouldReopenItemModal) {
+          setIsModalOpen(true);
+          setShouldReopenItemModal(false);
+        }
+      });
     });
   };
 

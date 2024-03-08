@@ -12,4 +12,10 @@ const getAllItems = async () => {
   return items;
 };
 
-export { getItemInfo, getAllItems };
+const setNewPrice = async (item_id, store_id, newPrice) => {
+  // STUB - replace with actual API call
+  await setTimeout(1000);
+  console.log(item_id, store_id, newPrice);
+};
+
+export { getItemInfo, getAllItems, setNewPrice };
