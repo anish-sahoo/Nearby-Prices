@@ -10,7 +10,6 @@ import {
 import PropTypes from "prop-types";
 
 const ItemModal = ({ items, isOpen, onClose, openUpdatePriceModal }) => {
-  console.log('Item Modal',items);
   return (
     <Modal
       isOpen={isOpen}
@@ -26,48 +25,47 @@ const ItemModal = ({ items, isOpen, onClose, openUpdatePriceModal }) => {
               {items.name}
             </ModalHeader>
             <ModalBody>
-              {items && items.stores && items.stores.map((store, index) => (
-                <Card
-                  key={index}
-                  className="p-3"
-                >
-                  <div className="flex flex-row w-full h-full">
-                    <div className="w-full h-full">
-                      <h1 className="text-3xl h-full">{store.store_name}</h1>
-                      <h2>{store.address}</h2>
-                    </div>
-                    <h1
-                      className={`text-3xl flex my-auto ${index === 0 ? "text-green-400" : ""}`}
-                    >
-                      {store.price}
-                    </h1>
-                  </div>
-                  <div className="flex flex-row w-full mt-1">
-                    <Button className="flex mx-auto w-full mr-1">
-                      <a
-                        href={`https://www.google.com/maps/@${store.latitude},${store.longitude},18z`}
-                        target="_blank"
+              {items &&
+                items.stores &&
+                items.stores.map((store, index) => (
+                  <Card key={index} className="p-3">
+                    <div className="flex flex-row w-full h-full">
+                      <div className="w-full h-full">
+                        <h1 className="text-3xl h-full">{store.store_name}</h1>
+                        <h2>{store.address}</h2>
+                      </div>
+                      <h1
+                        className={`text-3xl flex my-auto ${index === 0 ? "text-green-400" : ""}`}
                       >
-                        Locate
-                      </a>
-                    </Button>
-                    <Button 
-                      className="flex w-full mx-auto my-auto text-wrap ml-1"
-                      onClick={() =>
-                        openUpdatePriceModal({
-                          item_id: items.item_id, // Adjust accordingly
-                          item_name: items.name,
-                          store_id: store.store_id,
-                          store_name: store.store_name,
-                          price: store.price,
-                        })
-                      }
-                    >
-                      Update Price
-                    </Button>
-                  </div>
-                </Card>
-              ))}
+                        {store.price}
+                      </h1>
+                    </div>
+                    <div className="flex flex-row w-full mt-1">
+                      <Button className="flex mx-auto w-full mr-1">
+                        <a
+                          href={`https://www.google.com/maps/@${store.latitude},${store.longitude},18z`}
+                          target="_blank"
+                        >
+                          Locate
+                        </a>
+                      </Button>
+                      <Button
+                        className="flex w-full mx-auto my-auto text-wrap ml-1"
+                        onClick={() =>
+                          openUpdatePriceModal({
+                            item_id: items.item_id, // Adjust accordingly
+                            item_name: items.name,
+                            store_id: store.store_id,
+                            store_name: store.store_name,
+                            price: store.price,
+                          })
+                        }
+                      >
+                        Update Price
+                      </Button>
+                    </div>
+                  </Card>
+                ))}
             </ModalBody>
             <ModalFooter>
               <Button color="danger" variant="light" onPress={onClose}>
@@ -89,7 +87,6 @@ ItemModal.propTypes = {
 };
 
 export default ItemModal;
-
 
 // {
 //   "name": "Muffins - Assorted",

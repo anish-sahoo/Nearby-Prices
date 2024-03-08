@@ -5,6 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdClear } from "react-icons/md";
 import ItemModal from "../components/ItemModal";
 import UpdatePriceModal from "../components/UpdatePriceModal";
+import { getAllItems, getItemInfo } from "../endpoints";
 
 const HomePage = () => {
   const [items, setItems] = useState([]);
@@ -14,6 +15,7 @@ const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItemInfo, setSelectedItemInfo] = useState({});
   const [isUpdatePriceModalOpen, setUpdatePriceModalOpen] = useState(false);
+  const [shouldReopenItemModal, setShouldReopenItemModal] = useState(false);
 
   // retrieve all the items on page load
   useEffect(() => {
@@ -28,7 +30,7 @@ const HomePage = () => {
         (item) =>
           item.item_name.toLowerCase().includes(search.toLowerCase()) ||
           item.store_name.toLowerCase().includes(search.toLowerCase()) ||
-          item.category_id.toLowerCase().includes(search.toLowerCase())
+          item.category_id.toLowerCase().includes(search.toLowerCase()),
       );
       setDisplayItems(filteredItems);
     } else {
@@ -37,36 +39,42 @@ const HomePage = () => {
   }, [search, items]);
 
   // retrieve all the items
-  const handleItemRetrieval = async () => {
-    // Fetch items from API
-    const data = await fetch("/api/items");
-    const items = await data.json();
-    setItems(items.slice(0, 50));
-    setDisplayItems(items.slice(0, 50));
-    setLoading(false);
+  const handleItemRetrieval = () => {
+    setLoading(true);
+    getAllItems().then((items) => {
+      setItems(items.slice(0, 50));
+      setDisplayItems(items.slice(0, 50));
+      setLoading(false);
+    });
   };
 
-  // retrieve all the stores for one item
-  const handleItemInfoRetrieval = async (id, name) => {
-    // Fetch item info from API
-    const data = await fetch(`/api/items/${id}`);
-    const itemInfo = await data.json();
-    setSelectedItemInfo({ name: name, item_id: id, stores: itemInfo });
-    setIsModalOpen(true);
+  // package the item info and stores and open the modal
+  const handleItemInfoRetrieval = (id, name) => {
+    getItemInfo(id).then((stores) => {
+      setSelectedItemInfo({ name: name, item_id: id, stores: stores });
+      setIsModalOpen(true);
+    });
   };
 
   // open the modal for updating price
   const openUpdatePriceModal = (item) => {
     setSelectedItemInfo(item);
     setUpdatePriceModalOpen(true);
+    setShouldReopenItemModal(isModalOpen);
   };
 
   // handle the price update
-  const handlePriceUpdate = (updatedPrice) => {
-    console.log(updatedPrice);
-    console.log(selectedItemInfo);
+  const handlePriceUpdate = (item_id, item_name, updatedPrice) => {
     setUpdatePriceModalOpen(false);
-  }
+    getItemInfo(item_id).then((data) => {
+      setSelectedItemInfo({ name: item_name, item_id: item_id, stores: data });
+      console.log("Updated price for", item_name, "to", updatedPrice);
+      if (shouldReopenItemModal) {
+        setIsModalOpen(true);
+        setShouldReopenItemModal(false);
+      }
+    });
+  };
 
   const darkButtonStyle = "dark:bg-indigo-800 dark:font-bold";
   const lightButtonStyle = "bg-sky-600 font-bold text-white";
@@ -133,7 +141,9 @@ const HomePage = () => {
       <UpdatePriceModal
         isOpen={isUpdatePriceModalOpen}
         onClose={() => setUpdatePriceModalOpen(false)}
-        onPriceUpdate={(newPrice) => handlePriceUpdate(newPrice)}
+        onPriceUpdate={(item_id, item_name, newPrice) =>
+          handlePriceUpdate(item_id, item_name, newPrice)
+        }
         item={selectedItemInfo}
       />
     </div>
