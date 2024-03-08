@@ -12,9 +12,8 @@ import { useState } from "react";
 
 const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
   const [newPrice, setNewPrice] = useState(0);
-  const handlePriceUpdate = (item_id, item_name, newPrice) => {
-    item.price = newPrice;
-    onPriceUpdate(item_id, item_name, newPrice);
+  const handlePriceUpdate = (item_id, item_name, store_id, newPrice) => {
+    onPriceUpdate(item_id, item_name, store_id, newPrice);
     setNewPrice(0);
     onClose();
   };
@@ -56,7 +55,7 @@ const UpdatePriceModal = ({ isOpen, onClose, onPriceUpdate, item }) => {
             className=""
             variant="flat"
             onClick={() =>
-              handlePriceUpdate(item.item_id, item.item_name, newPrice)
+              handlePriceUpdate(item.item_id, item.item_name, item.store_id, newPrice)
             }
             size="lg"
           >
