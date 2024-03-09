@@ -80,7 +80,7 @@ const ItemModal = ({ items, isOpen, onClose, openUpdatePriceModal }) => {
 };
 
 ItemModal.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.object.isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   openUpdatePriceModal: PropTypes.func.isRequired,
