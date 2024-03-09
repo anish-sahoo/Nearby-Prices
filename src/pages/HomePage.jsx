@@ -6,6 +6,8 @@ import { MdClear } from "react-icons/md";
 import ItemModal from "../components/ItemModal";
 import UpdatePriceModal from "../components/UpdatePriceModal";
 import { getAllItems, getItemInfo, setNewPrice } from "../endpoints";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = () => {
   const [items, setItems] = useState([]);
@@ -67,15 +69,15 @@ const HomePage = () => {
   const handlePriceUpdate = (item_id, item_name, store_id, updatedPrice) => {
     setUpdatePriceModalOpen(false);
     if (updatedPrice === 0) {
-      console.log(`Price for ${item_name} at store ${store_id} cannot be 0`);
+      toast.error(`ERROR: Price cannot be 0`);
     }
     setNewPrice(item_id, store_id, updatedPrice).then(() => {
       getItemInfo(item_id).then((data) => {
-        console.log(
-          updatedPrice !== 0
-            ? `Updated price for ${item_name} at store ${store_id} to ${updatedPrice}`
-            : "Price update failed",
-        );
+        if (updatedPrice !== 0) {
+          toast.success(
+            `Updated price for ${item_name} at ${store_id} to $${updatedPrice}`,
+          );
+        }
         setSelectedItemInfo({
           name: item_name,
           item_id: item_id,
@@ -94,6 +96,7 @@ const HomePage = () => {
 
   return (
     <div className="">
+      <ToastContainer theme="colored" />
       <div className="flex flex-row flex-wrap gap-5 h-full p-4 justify-center mx-auto my-2">
         <Input
           size="sm"
