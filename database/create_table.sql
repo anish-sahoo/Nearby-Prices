@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS "Prices" (
 	"price"	REAL NOT NULL,
 	"timestamp" DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY("item_id","store_id"),
-	FOREIGN KEY("item_id") REFERENCES "Items"("item_id"),
+	FOREIGN KEY("item_id") REFERENCES "Items"("item_id") ON DELETE CASCADE,
 	FOREIGN KEY("store_id") REFERENCES "Stores"("store_id")
 );
 

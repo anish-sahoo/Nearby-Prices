@@ -17,6 +17,7 @@ app.get("/api/data", (req, res) => {
   res.json({ message: "Hello from the API!" });
 });
 
+// get all the items
 app.get("/api/items", (req, res) => {
   console.log("API Request:", req.url);
   const statement = `
@@ -48,6 +49,7 @@ app.get("/api/items", (req, res) => {
   });
 });
 
+// get all the prices for one item
 app.get("/api/items/:id", (req, res) => {
   console.log("API Request:", req.url);
   const itemId = req.params.id;
@@ -83,6 +85,37 @@ app.get("/api/items/:id", (req, res) => {
 app.get("*", (req, res) => {
   console.log("* Request:", req.url);
   res.sendFile(path.join(__dirname, "dist/index.html"));
+});
+
+// delete a price from the prices table
+app.post("/api/items/delete/:id/:sid", (req, res) => {
+  console.log("API Request:", req.url);
+  const itemId = req.params.id;
+  const storeId = req.params.sid;
+  const statement = `DELETE FROM prices WHERE item_id = ? AND store_id = ?;`;
+  db.run(statement, [itemId, storeId], (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ message: "Price deleted" });
+  });
+});
+
+// add a price to the prices table
+app.post("/api/items/add/:id/:sid/:price", (req, res) => {
+  console.log("API Request:", req.url);
+  const itemId = req.params.id;
+  const storeId = req.params.sid;
+  const price = req.params.price;
+  const statement = `INSERT INTO prices (item_id, store_id, price) VALUES (?, ?, ?);`;
+  db.run(statement, [itemId, storeId, price], (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ message: "Price added" });
+  });
 });
 
 app.listen(PORT, () => {
