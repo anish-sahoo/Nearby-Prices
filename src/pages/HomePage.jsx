@@ -26,13 +26,14 @@ const HomePage = () => {
 
   // update the display items based on search
   useEffect(() => {
+    
     // Filter items based on search
     if (search.length > 0) {
       const filteredItems = items.filter(
         (item) =>
           item.item_name.toLowerCase().includes(search.toLowerCase()) ||
           item.store_name.toLowerCase().includes(search.toLowerCase()) ||
-          item.category_id.toLowerCase().includes(search.toLowerCase()),
+          item.category_name.toLowerCase().includes(search.toLowerCase()),
       );
       setDisplayItems(filteredItems);
     } else {
@@ -91,8 +92,8 @@ const HomePage = () => {
     });
   };
 
-  const darkButtonStyle = "dark:bg-indigo-800 dark:font-bold";
-  const lightButtonStyle = "bg-sky-600 font-bold text-white";
+  const darkButtonStyle = "dark:bg-indigo-700 hover:dark:bg-indigo-600 dark:font-bold";
+  const lightButtonStyle = "bg-sky-600 hover:bg-sky-500 font-bold text-white font-sans";
 
   return (
     <div className="">
@@ -101,7 +102,7 @@ const HomePage = () => {
         <Input
           size="sm"
           radius="lg"
-          placeholder="Type to search..."
+          placeholder="Search by name, store, or category..."
           className="md:w-1/2 w-full"
           onChange={(e) => setSearch(e.target.value)}
           value={search}
