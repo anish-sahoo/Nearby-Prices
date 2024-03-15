@@ -16,8 +16,10 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedItemInfo, setSelectedItemInfo] = useState({});
+  const [selectedItemStoreInfo, setSelectedItemStoreInfo] = useState({});
   const [isUpdatePriceModalOpen, setUpdatePriceModalOpen] = useState(false);
   const [shouldReopenItemModal, setShouldReopenItemModal] = useState(false);
+  const [priceUpdated, setPriceUpdated] = useState(false);
 
   // retrieve all the items on page load
   useEffect(() => {
@@ -41,6 +43,14 @@ const HomePage = () => {
     }
   }, [search, items]);
 
+  useEffect(() => {
+    if(priceUpdated && selectedItemInfo.name && selectedItemInfo.item_id) {
+      getItemInfo(selectedItemInfo.item_id).then((data) => {
+        setSelectedItemInfo({ name: selectedItemInfo.name, item_id: selectedItemInfo.item_id, stores: data });
+      });
+    }
+  }, [selectedItemStoreInfo, selectedItemInfo.name, selectedItemInfo.item_id, priceUpdated]);
+
   // retrieve all the items
   const handleItemRetrieval = () => {
     setLoading(true);
@@ -61,7 +71,7 @@ const HomePage = () => {
 
   // open the modal for updating price
   const openUpdatePriceModal = (item) => {
-    setSelectedItemInfo(item);
+    setSelectedItemStoreInfo(item);
     setUpdatePriceModalOpen(true);
     setShouldReopenItemModal(isModalOpen);
   };
@@ -73,6 +83,7 @@ const HomePage = () => {
       toast.error(`ERROR: Price cannot be 0`);
     }
     setNewPrice(item_id, store_id, updatedPrice).then(() => {
+      setPriceUpdated(true);
       getItemInfo(item_id).then((data) => {
         if (updatedPrice !== 0) {
           toast.success(
@@ -152,16 +163,27 @@ const HomePage = () => {
       <ItemModal
         items={selectedItemInfo}
         isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        onClose={() => {
+          setIsModalOpen(false); 
+          setPriceUpdated(false);
+          setSelectedItemInfo({});
+        }}
         openUpdatePriceModal={(item) => openUpdatePriceModal(item)}
       />
       <UpdatePriceModal
         isOpen={isUpdatePriceModalOpen}
-        onClose={() => setUpdatePriceModalOpen(false)}
+        onClose={() => {
+          setUpdatePriceModalOpen(false);
+          setPriceUpdated(false);
+          if (shouldReopenItemModal) {
+            setIsModalOpen(true);
+            setShouldReopenItemModal(false);
+          }
+        }}
         onPriceUpdate={(item_id, item_name, store_id, newPrice) =>
           handlePriceUpdate(item_id, item_name, store_id, newPrice)
         }
-        item={selectedItemInfo}
+        item={selectedItemStoreInfo}
       />
     </div>
   );
