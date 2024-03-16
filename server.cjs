@@ -17,6 +17,13 @@ app.get("/api/data", (req, res) => {
   res.json({ message: "Hello from the API!" });
 });
 
+// Catch-all route for serving index.html
+app.get("*", (req, res) => {
+  console.log("* Request:", req.url);
+  res.sendFile(path.join(__dirname, "dist/index.html"));
+});
+
+// get all the items
 app.get("/api/items", (req, res) => {
   console.log("API Request:", req.url);
   const statement = `
@@ -32,7 +39,7 @@ app.get("/api/items", (req, res) => {
   FROM items AS i
     JOIN (
       SELECT item_id, store_id, MIN(price) AS price
-      FROM prices
+      FROM Prices
       GROUP BY item_id
     ) AS p ON p.item_id = i.item_id
     JOIN Categories AS c ON c.category_id = i.category_id
@@ -48,6 +55,7 @@ app.get("/api/items", (req, res) => {
   });
 });
 
+// get all the prices for one item
 app.get("/api/items/:id", (req, res) => {
   console.log("API Request:", req.url);
   const itemId = req.params.id;
@@ -79,10 +87,51 @@ app.get("/api/items/:id", (req, res) => {
   });
 });
 
-// Catch-all route for serving index.html
-app.get("*", (req, res) => {
-  console.log("* Request:", req.url);
-  res.sendFile(path.join(__dirname, "dist/index.html"));
+// delete a price from the prices table
+app.post("/api/items/delete/:id/:sid", (req, res) => {
+  console.log("API Request:", req.url);
+  const itemId = req.params.id;
+  const storeId = req.params.sid;
+  const statement = `DELETE FROM Prices WHERE item_id = ? AND store_id = ?;`;
+  db.run(statement, [itemId, storeId], (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ message: "Price deleted" });
+  });
+});
+
+// add a price to the prices table
+app.post("/api/items/add/:id/:sid/:price", (req, res) => {
+  console.log("API Request:", req.url);
+  const itemId = req.params.id;
+  const storeId = req.params.sid;
+  const price = req.params.price;
+  const statement = `INSERT INTO Prices (item_id, store_id, price) VALUES (?, ?, ?);`;
+  db.run(statement, [itemId, storeId, price], (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ message: "Price added" });
+  });
+});
+
+// update a price in the prices table
+app.post("/api/items/update/:id/:sid/:price", (req, res) => {
+  console.log("API Request:", req.url);
+  const itemId = req.params.id;
+  const storeId = req.params.sid;
+  const price = req.params.price;
+  const statement = `UPDATE Prices SET price = ? WHERE item_id = ? AND store_id = ?;`;
+  db.run(statement, [price, itemId, storeId], (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json({ message: "Price updated" });
+  });
 });
 
 app.listen(PORT, () => {
