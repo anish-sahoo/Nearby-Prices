@@ -9,21 +9,38 @@ import { Link } from "react-router-dom";
 import { useTheme } from "next-themes";
 import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { useState, useEffect } from "react";
+import LoginModal from "./LoginModal";
 
 const NavbarMaker = () => {
   const textStyle = "text-gray-800 dark:text-gray-100";
   const { theme, setTheme } = useTheme();
   const [selectedItem, setSelectedItem] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       setIsLoggedIn(true);
+      console.log("Logged in");
     } else {
       setIsLoggedIn(false);
+      console.log("Logged out");
     }
   }, []);
+
+  useEffect(() => {
+    console.log("Is logged in", isLoggedIn);
+  }, [isLoggedIn]);
+
+  const handleLogin = () => {
+    if (isLoggedIn) {
+      localStorage.removeItem("token");
+      setIsLoggedIn(false);
+    } else {
+      setIsLoginModalOpen(true);
+    }
+  };
 
   return (
     <Navbar isBlurred={true} className="justify-center">
@@ -48,8 +65,12 @@ const NavbarMaker = () => {
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Button className="flex text-lg" variant="flat">
-            <Link to="/">{isLoggedIn ? "Log Out" : "Log In"}</Link>
+          <Button
+            className="flex text-lg"
+            variant="flat"
+            onClick={() => handleLogin()}
+          >
+            {isLoggedIn ? "Log Out" : "Log In"}
           </Button>
         </NavbarItem>
         <NavbarItem>
@@ -71,6 +92,13 @@ const NavbarMaker = () => {
             </Button>
           )}
         </NavbarItem>
+        {isLoginModalOpen && (
+          <LoginModal
+            isOpen={isLoginModalOpen}
+            onClose={() => setIsLoginModalOpen(false)}
+            setLoggedIn={(status) => setIsLoggedIn(status)}
+          />
+        )}
       </NavbarContent>
     </Navbar>
   );

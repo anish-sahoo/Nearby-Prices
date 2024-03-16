@@ -13,23 +13,29 @@ const getAllItems = async () => {
 };
 
 const setNewPrice = async (item_id, store_id, newPrice) => {
-  const data = await fetch(`/api/items/update/${item_id}/${store_id}/${newPrice}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    }
-  });
+  const data = await fetch(
+    `/api/items/update/${item_id}/${store_id}/${newPrice}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
   const result = await data.json();
   console.log(result);
 };
 
 const addNewPrice = async (item_id, store_id, newPrice) => {
-  const data = await fetch(`/api/items/add/${item_id}/${store_id}/${newPrice}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    }
-  });
+  const data = await fetch(
+    `/api/items/add/${item_id}/${store_id}/${newPrice}`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    },
+  );
   const result = await data.json();
   console.log(result);
 };
@@ -39,7 +45,7 @@ const deletePrice = async (item_id, store_id) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-    }
+    },
   });
   const result = await data.json();
   console.log(result);

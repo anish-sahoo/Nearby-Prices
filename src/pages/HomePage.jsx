@@ -28,7 +28,6 @@ const HomePage = () => {
 
   // update the display items based on search
   useEffect(() => {
-    
     // Filter items based on search
     if (search.length > 0) {
       const filteredItems = items.filter(
@@ -44,12 +43,21 @@ const HomePage = () => {
   }, [search, items]);
 
   useEffect(() => {
-    if(priceUpdated && selectedItemInfo.name && selectedItemInfo.item_id) {
+    if (priceUpdated && selectedItemInfo.name && selectedItemInfo.item_id) {
       getItemInfo(selectedItemInfo.item_id).then((data) => {
-        setSelectedItemInfo({ name: selectedItemInfo.name, item_id: selectedItemInfo.item_id, stores: data });
+        setSelectedItemInfo({
+          name: selectedItemInfo.name,
+          item_id: selectedItemInfo.item_id,
+          stores: data,
+        });
       });
     }
-  }, [selectedItemStoreInfo, selectedItemInfo.name, selectedItemInfo.item_id, priceUpdated]);
+  }, [
+    selectedItemStoreInfo,
+    selectedItemInfo.name,
+    selectedItemInfo.item_id,
+    priceUpdated,
+  ]);
 
   // retrieve all the items
   const handleItemRetrieval = () => {
@@ -103,8 +111,10 @@ const HomePage = () => {
     });
   };
 
-  const darkButtonStyle = "dark:bg-indigo-700 hover:dark:bg-indigo-600 dark:font-bold";
-  const lightButtonStyle = "bg-sky-600 hover:bg-sky-500 font-bold text-white font-sans";
+  const darkButtonStyle =
+    "dark:bg-indigo-700 hover:dark:bg-indigo-600 dark:font-bold";
+  const lightButtonStyle =
+    "bg-sky-600 hover:bg-sky-500 font-bold text-white font-sans";
 
   return (
     <div className="">
@@ -164,7 +174,7 @@ const HomePage = () => {
         items={selectedItemInfo}
         isOpen={isModalOpen}
         onClose={() => {
-          setIsModalOpen(false); 
+          setIsModalOpen(false);
           setPriceUpdated(false);
           setSelectedItemInfo({});
         }}
