@@ -11,6 +11,7 @@ import {
 } from "@nextui-org/react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import { ToastContainer, toast } from "react-toastify";
 
 const LoginModal = ({ isOpen, onClose, setLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -32,15 +33,15 @@ const LoginModal = ({ isOpen, onClose, setLoggedIn }) => {
       console.log("Response from api", response);
       setErrorMessage("");
       if (response.status === 401) {
-        console.log("reachged here 401");
         setLoggedIn(false);
-        setErrorMessage("Invalid username or password");
+        toast.error("Invalid username or password");
+        setErrorMessage("");
         return;
       }
       if (response.status === 500) {
-        console.log("reachged here 500");
         setLoggedIn(false);
-        setErrorMessage("Server error");
+        toast.error("Server error");
+        setErrorMessage("");
         return;
       }
       const data = await response.json();
@@ -48,9 +49,12 @@ const LoginModal = ({ isOpen, onClose, setLoggedIn }) => {
         localStorage.setItem("token", data.token);
         setUsername("");
         setPassword("");
+        console.log("Successfully Logged in as " + username);
         setLoggedIn(true);
         onClose(); // Close the modal
+        toast.success("Logged in successfully");
       } else {
+        toast.error(data.message);
         setErrorMessage(data.message); // Display error message
       }
     } catch (err) {
@@ -72,6 +76,7 @@ const LoginModal = ({ isOpen, onClose, setLoggedIn }) => {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">Log in</ModalHeader>
+              <ToastContainer theme="colored" />
               <ModalBody>
                 {errorMessage && <p className="text-red-500">{errorMessage}</p>}
                 <Input
