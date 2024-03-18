@@ -91,12 +91,8 @@ const HomePage = () => {
       toast.error(`ERROR: Price cannot be 0`);
     }
     updatePrice(item_id, store_id, updatedPrice).then((data) => {
-      console.log(data);
-      if(data.error) {
-        toast.error(`ERROR: ${data.error || data.message}`);
-        return;
-      }
-      if(data.message === "Forbidden") {
+      console.log('Response from updatePrice',data);
+      if(data.message !== "Price updated") {
         toast.error(`ERROR: You must log in to update prices`);
         return;
       }
