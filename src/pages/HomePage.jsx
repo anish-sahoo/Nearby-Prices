@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdClear } from "react-icons/md";
 import ItemModal from "../components/ItemModal";
 import UpdatePriceModal from "../components/UpdatePriceModal";
-import { getAllItems, getItemInfo, setNewPrice } from "../endpoints";
+import { getAllItems, getItemInfo, updatePrice } from "../endpoints";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -90,7 +90,16 @@ const HomePage = () => {
     if (updatedPrice === 0) {
       toast.error(`ERROR: Price cannot be 0`);
     }
-    setNewPrice(item_id, store_id, updatedPrice).then(() => {
+    updatePrice(item_id, store_id, updatedPrice).then((data) => {
+      console.log(data);
+      if(data.error) {
+        toast.error(`ERROR: ${data.error || data.message}`);
+        return;
+      }
+      if(data.message === "Forbidden") {
+        toast.error(`ERROR: You must log in to update prices`);
+        return;
+      }
       setPriceUpdated(true);
       getItemInfo(item_id).then((data) => {
         if (updatedPrice !== 0) {
@@ -103,6 +112,7 @@ const HomePage = () => {
           item_id: item_id,
           stores: data,
         });
+        handleItemRetrieval();
         if (shouldReopenItemModal) {
           setIsModalOpen(true);
           setShouldReopenItemModal(false);

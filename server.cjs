@@ -202,11 +202,9 @@ app.post("/api/items/add/:id/:sid/:price", verifyJWT, (req, res) => {
 });
 
 // update a price in the prices table
-app.post("/api/items/update/:id/:sid/:price", verifyJWT, (req, res) => {
+app.post("/api/items/update", verifyJWT, (req, res) => {
   console.log("API Request:", req.url);
-  const itemId = req.params.id;
-  const storeId = req.params.sid;
-  const price = req.params.price;
+  const {itemId, storeId, price} = req.body;
   const statement = `UPDATE Prices SET price = ? WHERE item_id = ? AND store_id = ?;`;
   db.run(statement, [price, itemId, storeId], (err) => {
     if (err) {
@@ -215,6 +213,7 @@ app.post("/api/items/update/:id/:sid/:price", verifyJWT, (req, res) => {
     }
     res.json({ message: "Price updated" });
   });
+  console.log("Updated price for item", itemId, "at store", storeId, "to", price);
 });
 
 app.listen(PORT, () => {

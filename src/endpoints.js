@@ -12,20 +12,6 @@ const getAllItems = async () => {
   return items;
 };
 
-const setNewPrice = async (item_id, store_id, newPrice) => {
-  const data = await fetch(
-    `/api/items/update/${item_id}/${store_id}/${newPrice}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    },
-  );
-  const result = await data.json();
-  console.log(result);
-};
-
 const addNewPrice = async (item_id, store_id, newPrice) => {
   const data = await fetch(
     `/api/items/add/${item_id}/${store_id}/${newPrice}`,
@@ -51,4 +37,22 @@ const deletePrice = async (item_id, store_id) => {
   console.log(result);
 };
 
-export { getItemInfo, getAllItems, setNewPrice, addNewPrice, deletePrice };
+const updatePrice = async (item_id, store_id, newPrice) => {
+  console.log("Updating price for item", item_id, "at store", store_id, "to", newPrice);
+  const token = localStorage.getItem('token');
+  const data = await fetch(
+    `/api/items/update`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify({ itemId:item_id, storeId:store_id, price:newPrice }),
+    },
+  );
+  const result = await data.json();
+  return result;
+};
+
+export { getItemInfo, getAllItems, addNewPrice, deletePrice, updatePrice };
