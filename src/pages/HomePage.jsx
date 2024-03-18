@@ -5,7 +5,7 @@ import { FaSearch } from "react-icons/fa";
 import { MdClear } from "react-icons/md";
 import ItemModal from "../components/ItemModal";
 import UpdatePriceModal from "../components/UpdatePriceModal";
-import { getAllItems, getItemInfo, setNewPrice } from "../endpoints";
+import { getAllItems, getItemInfo, updatePrice } from "../endpoints";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -28,7 +28,6 @@ const HomePage = () => {
 
   // update the display items based on search
   useEffect(() => {
-    
     // Filter items based on search
     if (search.length > 0) {
       const filteredItems = items.filter(
@@ -44,12 +43,21 @@ const HomePage = () => {
   }, [search, items]);
 
   useEffect(() => {
-    if(priceUpdated && selectedItemInfo.name && selectedItemInfo.item_id) {
+    if (priceUpdated && selectedItemInfo.name && selectedItemInfo.item_id) {
       getItemInfo(selectedItemInfo.item_id).then((data) => {
-        setSelectedItemInfo({ name: selectedItemInfo.name, item_id: selectedItemInfo.item_id, stores: data });
+        setSelectedItemInfo({
+          name: selectedItemInfo.name,
+          item_id: selectedItemInfo.item_id,
+          stores: data,
+        });
       });
     }
-  }, [selectedItemStoreInfo, selectedItemInfo.name, selectedItemInfo.item_id, priceUpdated]);
+  }, [
+    selectedItemStoreInfo,
+    selectedItemInfo.name,
+    selectedItemInfo.item_id,
+    priceUpdated,
+  ]);
 
   // retrieve all the items
   const handleItemRetrieval = () => {
@@ -82,7 +90,12 @@ const HomePage = () => {
     if (updatedPrice === 0) {
       toast.error(`ERROR: Price cannot be 0`);
     }
-    setNewPrice(item_id, store_id, updatedPrice).then(() => {
+    updatePrice(item_id, store_id, updatedPrice).then((data) => {
+      console.log('Response from updatePrice',data);
+      if(data.message !== "Price updated") {
+        toast.error(`ERROR: You must log in to update prices`);
+        return;
+      }
       setPriceUpdated(true);
       getItemInfo(item_id).then((data) => {
         if (updatedPrice !== 0) {
@@ -95,6 +108,7 @@ const HomePage = () => {
           item_id: item_id,
           stores: data,
         });
+        handleItemRetrieval();
         if (shouldReopenItemModal) {
           setIsModalOpen(true);
           setShouldReopenItemModal(false);
@@ -103,8 +117,10 @@ const HomePage = () => {
     });
   };
 
-  const darkButtonStyle = "dark:bg-indigo-700 hover:dark:bg-indigo-600 dark:font-bold";
-  const lightButtonStyle = "bg-sky-600 hover:bg-sky-500 font-bold text-white font-sans";
+  const darkButtonStyle =
+    "dark:bg-indigo-700 hover:dark:bg-indigo-600 dark:font-bold";
+  const lightButtonStyle =
+    "bg-sky-600 hover:bg-sky-500 font-bold text-white font-sans";
 
   return (
     <div className="">
@@ -164,7 +180,7 @@ const HomePage = () => {
         items={selectedItemInfo}
         isOpen={isModalOpen}
         onClose={() => {
-          setIsModalOpen(false); 
+          setIsModalOpen(false);
           setPriceUpdated(false);
           setSelectedItemInfo({});
         }}

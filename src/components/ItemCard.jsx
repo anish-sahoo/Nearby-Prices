@@ -16,13 +16,15 @@ const ItemCard = ({ item, retriever, openUpdatePriceModal }) => {
     >
       <CardHeader>
         <div className="flex flex-col">
-        <h1
-          className="text-wrap text-2xl font-bold hover:underline w-full"
-          onClick={() => retriever(item.item_id, item.item_name)}
-        >
-          {item.item_name}
-        </h1>
-        <p className="flex italic text-gray-400 text-sm capitalize">{item.category_name}</p>
+          <h1
+            className="text-wrap text-2xl font-bold hover:underline w-full"
+            onClick={() => retriever(item.item_id, item.item_name)}
+          >
+            {item.item_name}
+          </h1>
+          <p className="flex italic text-gray-400 text-sm capitalize">
+            {item.category_name}
+          </p>
         </div>
       </CardHeader>
       <CardBody className="flex justify-end">

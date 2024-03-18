@@ -10,7 +10,7 @@ import {
 import PropTypes from "prop-types";
 
 const ItemModal = ({ items, isOpen, onClose, openUpdatePriceModal }) => {
-  console.log("ItemModal items opened", items);
+  // console.log("ItemModal items opened", items);
   return (
     <Modal
       isOpen={isOpen}
